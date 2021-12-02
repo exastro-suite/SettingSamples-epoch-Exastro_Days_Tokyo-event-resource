@@ -1,1 +1,1 @@
-# SettingSamples-epoch-KY_CloudSummit-event-resource
+# SettingSamples-epoch-Exastro_Days_Tokyo-event_user

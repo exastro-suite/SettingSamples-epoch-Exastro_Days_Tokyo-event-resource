@@ -41,7 +41,7 @@ public abstract class BaseEventService {
 		List<EventDto> eventList = null;
 		
 		try {
-			eventList = event_repo.getEvent()
+			eventList = event_repo.findAll()
 					.stream()
 					.map(e -> new EventDto(e.getEventId(), e.getEventName(), e.getEventDate()))
 					.collect(Collectors.toList());

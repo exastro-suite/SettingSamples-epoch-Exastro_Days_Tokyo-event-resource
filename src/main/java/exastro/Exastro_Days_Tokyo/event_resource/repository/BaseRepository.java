@@ -25,7 +25,7 @@ public abstract class BaseRepository {
 	protected String host;
 	protected String port;
 	
-	protected BaseRepository(RestTemplate restTemplate) {
+	protected BaseRepository extends JpaRepository(RestTemplate restTemplate) {
 		this.restTemplate = restTemplate;
 	}
 	

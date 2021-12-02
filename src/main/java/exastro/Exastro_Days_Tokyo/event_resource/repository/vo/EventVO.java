@@ -16,14 +16,40 @@
 package exastro.Exastro_Days_Tokyo.event_user.repository.vo;
 
 import java.util.Date;
+import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
+/**
+ * The persistent class for the events database table.
+ * 
+ */
+@Entity
+@Table(name="events")
+@NamedQuery(name="Event.findAll", query="SELECT e FROM Event e")
 public class EventVO {
+	private static final long serialVersionUID = 1L;
 
+	@Id
+	@Column(name="event_id")
 	private int eventId;
+
+	
+	@Column(name="event_name")
 	private String eventName;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name="event_date")
 	private Date eventDate;
 
 	public EventVO() {

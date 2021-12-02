@@ -28,31 +28,7 @@ import exastro.Exastro_Days_Tokyo.event_user.repository.vo.EventVO;
 
 @ConfigurationProperties(prefix = "resource.event")
 @Repository
-public class EventRepository extends BaseRepository {
-	
-	public EventRepository(RestTemplate restTemplate) {
-		super(restTemplate);
-	}
-	
-	public List<EventVO> getEvent() {
-		
-		String apiPath = "/api/v1/event";
-		String apiUrl = buildBaseUri() + apiPath;
-		
-		EventVO[] resBody = null;
-		try {
-			ResponseEntity<EventVO[]> response = restTemplate.getForEntity(apiUrl, EventVO[].class);
-			resBody = response.getBody();
-		}
-		catch(Exception e) {
-			throw e;
-		}
-		
-		return Arrays.asList(resBody);
-	}
-	
-	public EventDetailVO getEventDetail(int eventId) {
-		return null;
-	}
+public interface EventRepository extends JpaRepository<EventVO, String> {
 
+	ArrayList<EventVO>  findAll();
 }

@@ -13,14 +13,14 @@
  *   limitations under the License.
  */
 
-package exastro.Exastro_Days_Tokyo.event_user.service;
+package exastro.Exastro_Days_Tokyo.event_resource.service;
 
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import exastro.Exastro_Days_Tokyo.event_user.service.dto.EventDetailDto;
-import exastro.Exastro_Days_Tokyo.event_user.service.dto.EventDto;
+import exastro.Exastro_Days_Tokyo.event_resource.service.dto.EventDetailDto;
+import exastro.Exastro_Days_Tokyo.event_resource.service.dto.EventDto;
 
 @Service
 public interface EventService {

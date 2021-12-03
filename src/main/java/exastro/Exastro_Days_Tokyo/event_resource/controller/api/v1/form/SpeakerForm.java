@@ -13,16 +13,26 @@
  *   limitations under the License.
  */
 
-package exastro.Exastro_Days_Tokyo.event_resource;
+package exastro.Exastro_Days_Tokyo.event_resource.controller.api.v1.form;
 
-import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+public class SpeakerForm {
 
-public class ServletInitializer extends SpringBootServletInitializer {
+	private int speakerId;
+	private String speakerName;
 
-	@Override
-	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-		return application.sources(EventResourceApplication.class);
+	public int getspeakerId() {
+		return speakerId;
+	}
+	public void setspeakerId(int speakerId) {
+		this.speakerId = speakerId;
+	}
+	
+	public String getspeakerName() {
+		return speakerName;
+	}
+	public void setspeakerName(String speakerName) {
+		this.speakerName = speakerName;
 	}
 
 }
+

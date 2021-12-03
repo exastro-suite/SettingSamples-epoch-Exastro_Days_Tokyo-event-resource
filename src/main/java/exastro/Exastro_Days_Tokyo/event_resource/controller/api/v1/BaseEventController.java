@@ -13,21 +13,19 @@
  *   limitations under the License.
  */
 
-package exastro.Exastro_Days_Tokyo.event_user.controller.api.v1;
+package exastro.Exastro_Days_Tokyo.event_resource.controller.api.v1;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
-import exastro.Exastro_Days_Tokyo.event_user.controller.api.v1.form.EventForm;
-import exastro.Exastro_Days_Tokyo.event_user.service.EventService;
+import exastro.Exastro_Days_Tokyo.event_resource.controller.api.v1.form.EventForm;
+import exastro.Exastro_Days_Tokyo.event_resource.service.EventService;
 
-@RestController
-@RequestMapping("/api/v1/event")
+//@RestController
+//@RequestMapping("/api/v1/event")
 public class BaseEventController {
 	
 	@Autowired
@@ -54,5 +52,4 @@ public class BaseEventController {
 		
 		return eventList;
 	}
-
 }

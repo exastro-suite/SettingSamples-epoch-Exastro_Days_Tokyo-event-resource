@@ -15,7 +15,20 @@
 
 package exastro.Exastro_Days_Tokyo.event_resource.repository;
 
-public abstract class BaseRepository {
-	
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
+import exastro.Exastro_Days_Tokyo.event_resource.repository.vo.EventDetailVO;
+
+@ConfigurationProperties(prefix = "resource.event")
+@Repository
+public interface EventDetailRepository extends JpaRepository<EventDetailVO, String> {
+
+	//イベント詳細情報を取得
+//	ArrayList<EventDetailVO>  findByEventIdIs(int eventId);
+	EventDetailVO  findByEventIdIs(int eventId);
+
+	//セミナー一覧から登壇者ID 取得
+//	ArrayList<SpeakerVO> findBySpeakerIdIn(List<Integer> speakerList);
 }

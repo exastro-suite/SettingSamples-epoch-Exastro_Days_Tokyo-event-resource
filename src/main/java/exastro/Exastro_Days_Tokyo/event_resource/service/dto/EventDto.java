@@ -13,7 +13,7 @@
  *   limitations under the License.
  */
 
-package exastro.Exastro_Days_Tokyo.event_user.service.dto;
+package exastro.Exastro_Days_Tokyo.event_resource.service.dto;
 
 import java.util.Date;
 

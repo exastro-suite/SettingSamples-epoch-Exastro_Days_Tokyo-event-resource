@@ -13,7 +13,7 @@
  *   limitations under the License.
  */
 
-package exastro.Exastro_Days_Tokyo.event_user.config;
+package exastro.Exastro_Days_Tokyo.event_resource.config;
 
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;

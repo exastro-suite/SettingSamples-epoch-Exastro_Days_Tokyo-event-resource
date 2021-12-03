@@ -13,7 +13,7 @@
  *   limitations under the License.
  */
 
-package exastro.Exastro_Days_Tokyo.event_user.repository;
+package exastro.Exastro_Days_Tokyo.event_resource.repository;
 
 import java.util.List;
 
@@ -21,19 +21,19 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.client.RestTemplate;
 
-import exastro.Exastro_Days_Tokyo.event_user.repository.vo.SpeakerVO;
+import exastro.Exastro_Days_Tokyo.event_resource.repository.vo.SpeakerVO;
 
 @ConfigurationProperties(prefix = "resource.speaker")
 @Repository
 public class SpeakerRepository extends BaseRepository {
 	
-	public SpeakerRepository(RestTemplate restTemplate) {
-		super(restTemplate);
-	}
-
-	public List<SpeakerVO> getSpeaker() {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
-	}
+//	public SpeakerRepository(RestTemplate restTemplate) {
+//		super(restTemplate);
+//	}
+//
+//	public List<SpeakerVO> getSpeaker() {
+//		// TODO 自動生成されたメソッド・スタブ
+//		return null;
+//	}
 
 }

@@ -13,22 +13,16 @@
  *   limitations under the License.
  */
 
-package exastro.Exastro_Days_Tokyo.event_user.service;
+package exastro.Exastro_Days_Tokyo.event_resource;
 
-import org.springframework.stereotype.Service;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import exastro.Exastro_Days_Tokyo.event_user.service.dto.EventDetailDto;
+@SpringBootApplication
+public class EventResourceApplication {
 
-@Service
-public class EventUserService extends BaseEventService implements EventService {
-	
-	public EventUserService() {
-		
-	}
-
-	public EventDetailDto getEventDetail(int event_id) {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
+	public static void main(String[] args) {
+		SpringApplication.run(EventResourceApplication.class, args);
 	}
 
 }

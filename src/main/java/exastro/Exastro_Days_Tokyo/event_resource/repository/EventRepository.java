@@ -13,22 +13,27 @@
  *   limitations under the License.
  */
 
-package exastro.Exastro_Days_Tokyo.event_user.repository;
+package exastro.Exastro_Days_Tokyo.event_resource.repository;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.ArrayList;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.http.ResponseEntity;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.client.RestTemplate;
 
-import exastro.Exastro_Days_Tokyo.event_user.repository.vo.EventDetailVO;
-import exastro.Exastro_Days_Tokyo.event_user.repository.vo.EventVO;
+import exastro.Exastro_Days_Tokyo.event_resource.repository.vo.EventDetailVO;
+import exastro.Exastro_Days_Tokyo.event_resource.repository.vo.EventVO;
 
 @ConfigurationProperties(prefix = "resource.event")
 @Repository
 public interface EventRepository extends JpaRepository<EventVO, String> {
 
-	ArrayList<EventVO>  findAll();
+	//イベント一覧を取得
+	ArrayList<EventVO> findByIsDeleted(boolean isDeleted);
+	
+	//イベント詳細情報を取得
+	EventDetailVO  findByEventIdIs(int eventId);
+
+	//セミナー一覧から登壇者ID 取得
+//	ArrayList<SpeakerVO> findBySpeakerIdIn(List<Integer> speakerList);
 }

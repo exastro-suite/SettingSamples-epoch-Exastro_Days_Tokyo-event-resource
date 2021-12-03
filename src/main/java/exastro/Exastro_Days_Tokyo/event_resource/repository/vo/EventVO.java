@@ -13,19 +13,16 @@
  *   limitations under the License.
  */
 
-package exastro.Exastro_Days_Tokyo.event_user.repository.vo;
+package exastro.Exastro_Days_Tokyo.event_resource.repository.vo;
 
 import java.util.Date;
-import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -36,7 +33,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  */
 @Entity
 @Table(name="events")
-@NamedQuery(name="Event.findAll", query="SELECT e FROM Event e")
+//@NamedQuery(name="Event.findAll", query="SELECT e FROM Event e")
 public class EventVO {
 	private static final long serialVersionUID = 1L;
 
@@ -51,6 +48,17 @@ public class EventVO {
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="event_date")
 	private Date eventDate;
+
+	@Column(name="is_deleted")
+	private boolean isDeleted;
+	
+	public boolean isDeleted() {
+		return isDeleted;
+	}
+
+	public void setDeleted(boolean isDeleted) {
+		this.isDeleted = isDeleted;
+	}
 
 	public EventVO() {
 		
@@ -76,5 +84,6 @@ public class EventVO {
 	public void setEventDate(Date eventDate) {
 		this.eventDate = eventDate;
 	}
+
 }
 

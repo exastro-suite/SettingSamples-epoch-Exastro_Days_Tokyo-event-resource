@@ -13,16 +13,30 @@
  *   limitations under the License.
  */
 
-package exastro.Exastro_Days_Tokyo.event_user;
+package exastro.Exastro_Days_Tokyo.event_resource.service.dto;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+public class SpeakerDto {
 
-@SpringBootApplication
-public class EventUserApplication {
+	private int speakerId;
+	private String speakerName;
 
-	public static void main(String[] args) {
-		SpringApplication.run(EventUserApplication.class, args);
+	public SpeakerDto(int speakerId, String speakerName) {
+		this.speakerId = speakerId;
+		this.speakerName = speakerName;
+	}
+	public int getspeakerId() {
+		return speakerId;
+	}
+	public void setspeakerId(int speakerId) {
+		this.speakerId = speakerId;
+	}
+	
+	public String getspeakerName() {
+		return speakerName;
+	}
+	public void setspeakerName(String speakerName) {
+		this.speakerName = speakerName;
 	}
 
 }
+

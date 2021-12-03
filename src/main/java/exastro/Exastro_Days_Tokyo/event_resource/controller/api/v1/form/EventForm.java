@@ -13,7 +13,7 @@
  *   limitations under the License.
  */
 
-package exastro.Exastro_Days_Tokyo.event_user.controller.api.v1.form;
+package exastro.Exastro_Days_Tokyo.event_resource.controller.api.v1.form;
 
 import java.util.Date;
 

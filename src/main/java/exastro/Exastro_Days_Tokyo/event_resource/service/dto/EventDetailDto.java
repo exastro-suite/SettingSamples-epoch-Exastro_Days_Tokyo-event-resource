@@ -13,8 +13,9 @@
  *   limitations under the License.
  */
 
-package exastro.Exastro_Days_Tokyo.event_user.service.dto;
+package exastro.Exastro_Days_Tokyo.event_resource.service.dto;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class EventDetailDto {
@@ -24,8 +25,33 @@ public class EventDetailDto {
 	private String eventOverview;
 	private Date eventDate;
 	private String eventVenue;
+	private  ArrayList<Integer> speakerIDs = new ArrayList<Integer>();
 	private boolean isDeleted;
 
+	public EventDetailDto() {
+		
+	}
+	
+	public EventDetailDto(int eventId, String eventName, 
+			String eventOverview, Date eventDate, String eventVenue) {
+		this.eventId = eventId;
+		this.eventName = eventName;
+		this.eventOverview = eventOverview;
+		this.eventDate = eventDate;
+		this.eventVenue = eventVenue;
+	}
+	
+	public ArrayList<Integer> getSpeakerIDs() {
+		return speakerIDs;
+	}
+
+	public void setSpeakerIDs(ArrayList<Integer> speakerIDs) {
+		this.speakerIDs = speakerIDs;
+	}
+	public EventDetailDto(int eventId, String eventName) {
+		this.eventId = eventId;
+		this.eventName = eventName;
+	}
 	public int getEventId() {
 		return eventId;
 	}
@@ -67,5 +93,6 @@ public class EventDetailDto {
 	public void setDeleted(boolean isDeleted) {
 		this.isDeleted = isDeleted;
 	}
+	
 }
 

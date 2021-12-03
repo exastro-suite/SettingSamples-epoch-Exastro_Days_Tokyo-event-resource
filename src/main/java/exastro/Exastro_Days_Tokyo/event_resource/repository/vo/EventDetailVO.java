@@ -13,18 +13,48 @@
  *   limitations under the License.
  */
 
-package exastro.Exastro_Days_Tokyo.event_user.repository.vo;
+package exastro.Exastro_Days_Tokyo.event_resource.repository.vo;
 
 import java.util.Date;
 
-public class EventDetailVO {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
+/**
+ * The persistent class for the events database table.
+ * 
+ */
+@Entity
+@Table(name="events")
+//@NamedQuery(name="Event.findAll", query="SELECT e FROM Event e")
+public class EventDetailVO {
+	
+	@Id
+	@Column(name="event_id")
 	private int eventId;
+	
+	@Column(name="event_name")
 	private String eventName;
+	
+	
+	@Column(name="event_overview")
 	private String eventOverview;
+
+	@Column(name="event_date")
 	private Date eventDate;
+
+	@Column(name="event_venue")
 	private String eventVenue;
+	
+	@Column(name="is_deleted")
 	private boolean isDeleted;
+
+//	private  ArrayList<SpeakerVO> speakerVO = new ArrayList<SpeakerVO>();
 
 	public int getEventId() {
 		return eventId;
@@ -60,12 +90,21 @@ public class EventDetailVO {
 	public void setEventVenue(String eventVenue) {
 		this.eventVenue = eventVenue;
 	}
-	
+
 	public boolean isDeleted() {
 		return isDeleted;
 	}
 	public void setDeleted(boolean isDeleted) {
 		this.isDeleted = isDeleted;
 	}
+
+//	public ArrayList<SpeakerVO> getSpeakerVO() {
+//		return speakerVO;
+//	}
+//	
+//	public void setSpeakerVO(ArrayList<SpeakerVO> speakerVO) {
+//		this.speakerVO = new ArrayList<SpeakerVO>(speakerVO);
+//	}
+	
 }
 

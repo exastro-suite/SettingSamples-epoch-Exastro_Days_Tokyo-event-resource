@@ -13,8 +13,9 @@
  *   limitations under the License.
  */
 
-package exastro.Exastro_Days_Tokyo.event_user.controller.api.v1.form;
+package exastro.Exastro_Days_Tokyo.event_resource.controller.api.v1.form;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class EventDetailForm {
@@ -25,7 +26,18 @@ public class EventDetailForm {
 	private Date eventDate;
 	private String eventVenue;
 	private boolean isDeleted;
+	private  ArrayList<Integer> speakerIDs = new ArrayList<Integer>();
 
+	public EventDetailForm(int eventId, String eventName, 
+			String eventOverview, Date eventDate, String eventVenue, ArrayList<Integer> speakerIDs) {
+		this.eventId = eventId;
+		this.eventName = eventName;
+		this.eventOverview = eventOverview;
+		this.eventDate = eventDate;
+		this.eventVenue = eventVenue;
+		this.speakerIDs =(ArrayList<Integer>)speakerIDs.clone();
+	}
+	
 	public int getEventId() {
 		return eventId;
 	}
@@ -67,5 +79,14 @@ public class EventDetailForm {
 	public void setDeleted(boolean isDeleted) {
 		this.isDeleted = isDeleted;
 	}
+
+	public ArrayList<Integer> getSpeakerIDs() {
+		return speakerIDs;
+	}
+
+	public void setSpeakerIDs(ArrayList<Integer> speakerIDs) {
+		this.speakerIDs = speakerIDs;
+	}
+
 }
 

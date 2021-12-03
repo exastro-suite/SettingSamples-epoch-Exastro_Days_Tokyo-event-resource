@@ -13,21 +13,29 @@
  *   limitations under the License.
  */
 
-package exastro.Exastro_Days_Tokyo.event_user.service;
+package exastro.Exastro_Days_Tokyo.event_resource.service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import exastro.Exastro_Days_Tokyo.event_user.repository.EventRepository;
-import exastro.Exastro_Days_Tokyo.event_user.repository.SpeakerRepository;
-import exastro.Exastro_Days_Tokyo.event_user.service.dto.EventDto;
+import exastro.Exastro_Days_Tokyo.event_resource.repository.EventDetailRepository;
+import exastro.Exastro_Days_Tokyo.event_resource.repository.EventRepository;
+import exastro.Exastro_Days_Tokyo.event_resource.repository.SeminarRepository;
+import exastro.Exastro_Days_Tokyo.event_resource.repository.SpeakerRepository;
+import exastro.Exastro_Days_Tokyo.event_resource.service.dto.EventDto;
 
 public abstract class BaseEventService {
 	
 	@Autowired
 	protected EventRepository event_repo;
+
+	@Autowired
+	protected EventDetailRepository event_detail_repo;
+
+	@Autowired
+	protected SeminarRepository seminar_repo;
 
 	@Autowired
 	protected SpeakerRepository speaker_repo;
@@ -41,7 +49,7 @@ public abstract class BaseEventService {
 		List<EventDto> eventList = null;
 		
 		try {
-			eventList = event_repo.findAll()
+			eventList = event_repo.findByIsDeleted(false)
 					.stream()
 					.map(e -> new EventDto(e.getEventId(), e.getEventName(), e.getEventDate()))
 					.collect(Collectors.toList());

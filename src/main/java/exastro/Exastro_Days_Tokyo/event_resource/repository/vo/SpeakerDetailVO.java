@@ -13,7 +13,7 @@
  *   limitations under the License.
  */
 
-package exastro.Exastro_Days_Tokyo.event_user.repository.vo;
+package exastro.Exastro_Days_Tokyo.event_resource.repository.vo;
 
 public class SpeakerDetailVO {
 

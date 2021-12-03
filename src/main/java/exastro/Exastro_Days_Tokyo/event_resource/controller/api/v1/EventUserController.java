@@ -13,14 +13,14 @@
  *   limitations under the License.
  */
 
-package exastro.Exastro_Days_Tokyo.event_user.controller.api.v1;
+package exastro.Exastro_Days_Tokyo.event_resource.controller.api.v1;
 
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import exastro.Exastro_Days_Tokyo.event_user.controller.api.v1.form.EventDetailForm;
-import exastro.Exastro_Days_Tokyo.event_user.service.dto.EventDetailDto;
+import exastro.Exastro_Days_Tokyo.event_resource.controller.api.v1.form.EventDetailForm;
+import exastro.Exastro_Days_Tokyo.event_resource.service.dto.EventDetailDto;
 
 public class EventUserController extends BaseEventController {
 	

@@ -13,22 +13,15 @@
  *   limitations under the License.
  */
 
-package exastro.Exastro_Days_Tokyo.event_user.service;
+package exastro.Exastro_Days_Tokyo.event_resource;
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 
-import org.springframework.stereotype.Service;
+@SpringBootTest
+class EventUserApplicationTests {
 
-import exastro.Exastro_Days_Tokyo.event_user.service.dto.EventDetailDto;
-
-@Service
-public class EventUserService extends BaseEventService implements EventService {
-	
-	public EventUserService() {
-		
-	}
-
-	public EventDetailDto getEventDetail(int event_id) {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
+	@Test
+	void contextLoads() {
 	}
 
 }

@@ -1,1 +1,1 @@
-# SettingSamples-epoch-Exastro_Days_Tokyo-event_user
+# SettingSamples-epoch-Exastro_Days_Tokyo-event_resource

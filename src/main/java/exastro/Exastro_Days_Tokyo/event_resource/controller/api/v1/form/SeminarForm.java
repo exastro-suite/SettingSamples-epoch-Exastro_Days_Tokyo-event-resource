@@ -24,8 +24,9 @@ public class SeminarForm {
 	private boolean isDeleted;
 	private int mstSeminarId;
 	private int blockId;
-	//private int speakerId;
-	private int eventId;
+	private int speakerId;
+	//private int eventId;
+	private String seminarName;
 
 	public SeminarForm() {
 		
@@ -38,10 +39,31 @@ public class SeminarForm {
 		this.isDeleted = isDeleted;
 		this.mstSeminarId = mstSeminarId;
 		this.blockId = blockId;
-		//this.speakerId = speakerId;
-		this.eventId = eventId;
+		this.speakerId = speakerId;
 	}
 	
+	public SeminarForm(int seminarId, String seminarName, Date seminarDate) {
+		this.seminarId = seminarId;
+		this.seminarName = seminarName;
+		this.seminarDate = seminarDate;
+	}
+	
+	public int getSpeakerId() {
+		return speakerId;
+	}
+
+	public void setSpeakerId(int speakerId) {
+		this.speakerId = speakerId;
+	}
+
+	public String getSeminarName() {
+		return seminarName;
+	}
+
+	public void setSeminarName(String seminarName) {
+		this.seminarName = seminarName;
+	}
+
 	public int getSeminarId() {
 		return seminarId;
 	}
@@ -80,21 +102,6 @@ public class SeminarForm {
 
 	public void setBlockId(int blockId) {
 		this.blockId = blockId;
-	}
-
-//	public int getSpeakerId() {
-//		return speakerId;
-//	}
-
-//	public void setSpeakerId(int speakerId) {
-//		this.speakerId = speakerId;
-//	}
-
-	public int getEventId() {
-		return eventId;
-	}
-	public void setEventId(int eventId) {
-		this.eventId = eventId;
 	}
 	
 }

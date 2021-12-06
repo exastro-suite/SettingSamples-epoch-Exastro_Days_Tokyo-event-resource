@@ -22,6 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import exastro.Exastro_Days_Tokyo.event_resource.controller.api.v1.form.SeminarForm;
+import exastro.Exastro_Days_Tokyo.event_resource.service.SeminarService;
 
 //@RestController
 //@RequestMapping("/api/v1/seminar")
@@ -40,9 +41,9 @@ public class BaseSeminarController {
 		List<SeminarForm> seminarList = null;
 		
 		try {
-			seminarList = service.getEvent()
+			seminarList = service.getSeminar()
 					.stream()
-					.map(s -> new SeminarForm(e.getEventId(), e.getEventName(), e.getEventDate()))
+					.map(s -> new SeminarForm(s.getSeminarId(), s.getSeminarName(), s.getSeminarDate()))
 					.collect(Collectors.toList());
 		}
 		catch(Exception e) {

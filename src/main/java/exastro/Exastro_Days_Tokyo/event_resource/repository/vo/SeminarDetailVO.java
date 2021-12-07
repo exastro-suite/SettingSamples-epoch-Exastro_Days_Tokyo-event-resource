@@ -1,8 +1,12 @@
-package exastro.Exastro_Days_Tokyo.event_resource.service.dto;
+package exastro.Exastro_Days_Tokyo.event_resource.repository.vo;
 
 import java.util.Date;
 
-public class SeminarDetailDto extends SeminarListDto{
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
+import javax.persistence.OneToOne;
+
+public class SeminarDetailVO extends SeminarListVO{
 
 //	開催日時(開始)
 	private Date startDatetime;
@@ -17,13 +21,18 @@ public class SeminarDetailDto extends SeminarListDto{
 	private int capacity;
 	private int isDeleted;
 
+	@OneToOne
+    @JoinColumns({
+        @JoinColumn(name = "block_id", referencedColumnName = "block_id")
+    })
+    private BlockVO  block;	
 
-	public SeminarDetailDto(int seminarId) {
+	public SeminarDetailVO(int seminarId) {
 		super();
 	}
 
 
-	public SeminarDetailDto(int seminarId, String seminarName, 
+	public SeminarDetailVO(int seminarId, String seminarName, 
 			String seminarOverview, Date startDatetime, int blockId, String  blockName, int speakerId) {
 		super(seminarId, seminarName, blockId, blockName);
 		this.seminarOverview = seminarOverview;

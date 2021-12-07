@@ -15,41 +15,43 @@
 
 package exastro.Exastro_Days_Tokyo.event_resource.controller.api.v1;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
-import exastro.Exastro_Days_Tokyo.event_resource.controller.api.v1.form.SeminarListForm;
+import exastro.Exastro_Days_Tokyo.event_resource.controller.api.v1.form.SeminarDetailForm;
 import exastro.Exastro_Days_Tokyo.event_resource.service.SeminarService;
+import exastro.Exastro_Days_Tokyo.event_resource.service.dto.SeminarDetailDto;
 
 //@RestController
 //@RequestMapping("/api/v1/seminar")
-public class BaseSeminarController {
+public class SeminarResourceController {
 	
 	@Autowired
 	protected SeminarService service;
 	
-	public BaseSeminarController() {
+	public SeminarResourceController() {
 		
 	}
 
-	@GetMapping("")
-	public List<SeminarListForm> seminar() {
+	@GetMapping("/{seminar_id}")
+	public SeminarDetailForm eventDetail(@PathVariable(value = "seminar_id") @Validated int seminar_id) {
 		
-		List<SeminarListForm> seminarList = null;
-		
+		SeminarDetailForm eventDetail = null;
+		//	public SeminarDetailDto(int seminarId, String seminarName, 
+		//String seminarOverview, Date startDatetime, int blockId, String  blockName, int speakerId) {
+
 		try {
-			seminarList = service.getSeminar()
-					.stream()
-					.map(s -> new SeminarListForm(s.getSeminarId(), s.getSeminarName(), s.getStartDatetime()))
-					.collect(Collectors.toList());
+			SeminarDetailDto e = service.getSeminarDetail(seminar_id);
+			eventDetail = new SeminarDetailForm(e.getSeminarId(), e.getSeminarName(),
+					 e.getSeminarOverview(), e.getStartDatetime(), e.getBlockId(),e.getBlockName(), e.getSpeakerId());
+		
 		}
 		catch(Exception e) {
 			throw e;
 		}
 		
-		return seminarList;
+		return eventDetail;
 	}
 }

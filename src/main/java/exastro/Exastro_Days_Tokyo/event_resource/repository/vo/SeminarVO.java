@@ -4,6 +4,10 @@ public class SeminarVO {
 	private int mstSeminarId;
 	private String seminarName;
 
+	public SeminarVO(String seminarName) {
+		this.seminarName = seminarName;
+	}
+
 	public int getMstSeminarId() {
 		return mstSeminarId;
 	}

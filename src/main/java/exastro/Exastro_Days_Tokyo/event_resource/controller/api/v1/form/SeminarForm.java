@@ -32,6 +32,10 @@ public class SeminarForm {
 		
 	}
 
+	public SeminarForm(String seminarName) {
+		this.seminarName = seminarName;
+	}
+	
 	public SeminarForm(int seminarId, Date seminarDate, boolean isDeleted,
 			int mstSeminarId, int blockId, int speakerId, int eventId) {
 		this.seminarId = seminarId;

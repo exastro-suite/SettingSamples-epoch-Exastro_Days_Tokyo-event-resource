@@ -16,7 +16,15 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  */
 @Entity
 @Table(name="seminars")
-public class SeminarListVO{
+public class SeminarListVO extends SeminarVO{
+
+
+	public SeminarListVO(int seminarId, String seminarName, int blockId, String blockName) {
+		super(seminarName);
+		this.seminarId = seminarId;
+		this.blockId = blockId;
+		this.blockName = blockName;
+	}
 
 	@Id
 	@Column(name="seminar_id")
@@ -36,15 +44,15 @@ public class SeminarListVO{
 
 	@Column(name="event_id")
 	private int eventId;
+
+	private String blockName;
 	
-	public SeminarListVO() {
-		
+	public String getBlockName() {
+		return blockName;
 	}
-	
-	public SeminarListVO(int seminarId) {
-		this.seminarId = seminarId;
+	public void setBlockName(String blockName) {
+		this.blockName = blockName;
 	}
-	
 	public int getSeminarId() {
 		return seminarId;
 	}

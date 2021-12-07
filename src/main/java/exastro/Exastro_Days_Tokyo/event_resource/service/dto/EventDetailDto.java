@@ -18,12 +18,8 @@ package exastro.Exastro_Days_Tokyo.event_resource.service.dto;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class EventDetailDto {
-
-	private int eventId;
-	private String eventName;
+public class EventDetailDto extends EventDto{
 	private String eventOverview;
-	private Date eventDate;
 	private String eventVenue;
 	private  ArrayList<Integer> speakerIDs = new ArrayList<Integer>();
 	private boolean isDeleted;
@@ -34,10 +30,8 @@ public class EventDetailDto {
 	
 	public EventDetailDto(int eventId, String eventName, 
 			String eventOverview, Date eventDate, String eventVenue) {
-		this.eventId = eventId;
-		this.eventName = eventName;
+		super(eventId, eventName, eventDate);
 		this.eventOverview = eventOverview;
-		this.eventDate = eventDate;
 		this.eventVenue = eventVenue;
 	}
 	
@@ -48,38 +42,14 @@ public class EventDetailDto {
 	public void setSpeakerIDs(ArrayList<Integer> speakerIDs) {
 		this.speakerIDs = speakerIDs;
 	}
-	public EventDetailDto(int eventId, String eventName) {
-		this.eventId = eventId;
-		this.eventName = eventName;
-	}
-	public int getEventId() {
-		return eventId;
-	}
-	public void setEventId(int eventId) {
-		this.eventId = eventId;
-	}
-	
-	public String getEventName() {
-		return eventName;
-	}
-	public void setEventName(String eventName) {
-		this.eventName = eventName;
-	}
-	
+
 	public String getEventOverview() {
 		return eventOverview;
 	}
 	public void setEventOverview(String eventOverview) {
 		this.eventOverview = eventOverview;
 	}
-	
-	public Date getEventDate() {
-		return eventDate;
-	}
-	public void setEventDate(Date eventDate) {
-		this.eventDate = eventDate;
-	}
-	
+
 	public String getEventVenue() {
 		return eventVenue;
 	}

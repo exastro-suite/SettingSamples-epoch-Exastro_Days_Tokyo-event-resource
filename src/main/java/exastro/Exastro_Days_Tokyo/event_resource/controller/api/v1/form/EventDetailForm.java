@@ -17,6 +17,7 @@ package exastro.Exastro_Days_Tokyo.event_resource.controller.api.v1.form;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class EventDetailForm {
 
@@ -26,16 +27,16 @@ public class EventDetailForm {
 	private Date eventDate;
 	private String eventVenue;
 	private boolean isDeleted;
-	private  ArrayList<Integer> speakerIDs = new ArrayList<Integer>();
+	private List<Integer> speakerIDs;
 
 	public EventDetailForm(int eventId, String eventName, 
-			String eventOverview, Date eventDate, String eventVenue, ArrayList<Integer> speakerIDs) {
+			String eventOverview, Date eventDate, String eventVenue, List<Integer> speakerIDs) {
 		this.eventId = eventId;
 		this.eventName = eventName;
 		this.eventOverview = eventOverview;
 		this.eventDate = eventDate;
 		this.eventVenue = eventVenue;
-		this.speakerIDs =(ArrayList<Integer>)speakerIDs.clone();
+		this.speakerIDs = new ArrayList<Integer>(speakerIDs);
 	}
 	
 	public int getEventId() {
@@ -80,11 +81,11 @@ public class EventDetailForm {
 		this.isDeleted = isDeleted;
 	}
 
-	public ArrayList<Integer> getSpeakerIDs() {
+	public List<Integer> getSpeakerIDs() {
 		return speakerIDs;
 	}
 
-	public void setSpeakerIDs(ArrayList<Integer> speakerIDs) {
+	public void setSpeakerIDs(List<Integer> speakerIDs) {
 		this.speakerIDs = speakerIDs;
 	}
 

@@ -13,9 +13,15 @@
  *   limitations under the License.
  */
 
-package exastro.Exastro_Days_Tokyo.event_resource.repository;
+package exastro.Exastro_Days_Tokyo.event_resource;
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 
-public abstract class BaseRepository {
-	
+@SpringBootTest
+class EventResourceApplicationTests {
+
+	@Test
+	void contextLoads() {
+	}
 
 }

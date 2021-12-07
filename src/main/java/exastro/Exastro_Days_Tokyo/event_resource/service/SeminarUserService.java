@@ -13,25 +13,14 @@
  *   limitations under the License.
  */
 
-package exastro.Exastro_Days_Tokyo.event_resource.repository.vo;
+package exastro.Exastro_Days_Tokyo.event_resource.service;
 
-public class SpeakerVO {
+import java.util.List;
 
-	private int speakerId;
-	private String speakerName;
+import org.springframework.stereotype.Service;
 
-	public int getspeakerId() {
-		return speakerId;
-	}
-	public void setspeakerId(int speakerId) {
-		this.speakerId = speakerId;
-	}
-	
-	public String getspeakerName() {
-		return speakerName;
-	}
-	public void setspeakerName(String speakerName) {
-		this.speakerName = speakerName;
-	}
+@Service
+public interface SeminarUserService extends SeminarService {
+
+	public List<Integer> getSpeakerIdList(int eventId);
 }
-

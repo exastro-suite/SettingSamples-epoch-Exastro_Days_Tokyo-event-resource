@@ -13,30 +13,19 @@
  *   limitations under the License.
  */
 
-package exastro.Exastro_Days_Tokyo.event_resource.service.dto;
+package exastro.Exastro_Days_Tokyo.event_resource.service;
 
-public class SpeakerDto {
+import java.util.List;
 
-	private int speakerId;
-	private String speakerName;
+import org.springframework.stereotype.Service;
 
-	public SpeakerDto(int speakerId, String speakerName) {
-		this.speakerId = speakerId;
-		this.speakerName = speakerName;
-	}
-	public int getspeakerId() {
-		return speakerId;
-	}
-	public void setspeakerId(int speakerId) {
-		this.speakerId = speakerId;
-	}
-	
-	public String getspeakerName() {
-		return speakerName;
-	}
-	public void setspeakerName(String speakerName) {
-		this.speakerName = speakerName;
-	}
+import exastro.Exastro_Days_Tokyo.event_resource.service.dto.EventDetailDto;
+import exastro.Exastro_Days_Tokyo.event_resource.service.dto.EventDto;
 
+@Service
+public interface EventUserService extends EventService {
+
+	public List<EventDto> getEvent();
+
+	public EventDetailDto getEventDetail(int eventId);
 }
-

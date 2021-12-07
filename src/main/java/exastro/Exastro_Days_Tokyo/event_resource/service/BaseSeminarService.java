@@ -20,32 +20,32 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import exastro.Exastro_Days_Tokyo.event_resource.repository.EventRepository;
-import exastro.Exastro_Days_Tokyo.event_resource.service.dto.EventDto;
+import exastro.Exastro_Days_Tokyo.event_resource.repository.SeminarRepository;
+import exastro.Exastro_Days_Tokyo.event_resource.service.dto.SeminarDto;
 
-public abstract class BaseEventService {
-	
+public abstract class BaseSeminarService {
+
 	@Autowired
-	protected EventRepository repository;
+	protected SeminarRepository repository;
 	
-	public BaseEventService() {
+	public BaseSeminarService() {
 		
 	}
 
-	public List<EventDto> getEvent() {
+	public List<SeminarDto> getSeminar(int eventId) {
 		
-		List<EventDto> eventList = null;
+		List<SeminarDto> seminarList = null;
 		
 		try {
-			eventList = repository.findByIsDeleted(false)
+			seminarList = repository.findByEventId(eventId)
 					.stream()
-					.map(e -> new EventDto(e.getEventId(), e.getEventName(), e.getEventDate()))
+					.map(e -> new SeminarDto(e.getSeminarId(), e.getSeminarName(), e.getBlockId(), e.getBlockName()))
 					.collect(Collectors.toList());
 		}
 		catch(Exception e) {
 			throw e;
 		}
 		
-		return eventList;
+		return seminarList;
 	}
 }

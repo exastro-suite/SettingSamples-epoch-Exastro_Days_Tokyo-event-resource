@@ -32,11 +32,10 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 //@NamedQuery(name="Event.findAll", query="SELECT e FROM Event e")
 public class BlockVO {
 	private static final long serialVersionUID = 1L;
-
+	
 	@Id
 	@Column(name="block_id")
 	private int blockId;
-
 	
 	@Column(name="block_name")
 	private String blockName;

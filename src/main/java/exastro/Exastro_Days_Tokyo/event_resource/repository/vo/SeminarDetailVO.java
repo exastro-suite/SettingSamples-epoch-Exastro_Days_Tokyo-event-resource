@@ -2,34 +2,34 @@ package exastro.Exastro_Days_Tokyo.event_resource.repository.vo;
 
 import java.util.Date;
 
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
-import javax.persistence.OneToOne;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
-public class SeminarDetailVO extends SeminarListVO{
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-//	開催日時(開始)
-	private Date startDatetime;
-
-//	登壇者ID
-	private int speakerId;
+@JsonIgnoreProperties(ignoreUnknown = true)
+/**
+ * The persistent class for the events database table.
+ * 
+ */
+@Entity
+@Table(name="seminars")
+public class SeminarDetailVO extends SeminarVO {
 	
 //	セミナー概要
+	@Column(name="seminar_overview")
 	private String seminarOverview;
 
 //	定員
+	@Column(name="capacity")
 	private int capacity;
-	private int isDeleted;
 
-	@OneToOne
-    @JoinColumns({
-        @JoinColumn(name = "block_id", referencedColumnName = "block_id")
-    })
-    private BlockVO  block;	
-
-	public SeminarDetailVO(int seminarId) {
-		super();
-	}
+//	@OneToOne
+//    @JoinColumns({
+//        @JoinColumn(name = "block_id", referencedColumnName = "block_id")
+//    })
+//    private BlockVO  block;
 
 
 	public SeminarDetailVO(int seminarId, String seminarName, 
@@ -37,14 +37,6 @@ public class SeminarDetailVO extends SeminarListVO{
 		super(seminarId, seminarName, blockId, blockName);
 		this.seminarOverview = seminarOverview;
 		this.startDatetime = startDatetime;
-		this.speakerId = speakerId;
-	}
-
-	public int getSpeakerId() {
-		return speakerId;
-	}
-
-	public void setSpeakerId(int speakerId) {
 		this.speakerId = speakerId;
 	}
 
@@ -63,22 +55,5 @@ public class SeminarDetailVO extends SeminarListVO{
 	public void setCapacity(int capacity) {
 		this.capacity = capacity;
 	}
-
-	public Date getStartDatetime() {
-		return startDatetime;
-	}
-
-	public void setStartDatetime(Date startDatetime) {
-		this.startDatetime = startDatetime;
-	}
-
-	public int getIsDeleted() {
-		return isDeleted;
-	}
-
-	public void setIsDeleted(int isDeleted) {
-		this.isDeleted = isDeleted;
-	}
-	
 }
 

@@ -2,7 +2,7 @@ package exastro.Exastro_Days_Tokyo.event_resource.service.dto;
 
 import java.util.Date;
 
-public class SeminarDetailDto extends SeminarListDto{
+public class SeminarDetailDto extends SeminarDto{
 
 //	開催日時(開始)
 	private Date startDatetime;

@@ -17,14 +17,12 @@ package exastro.Exastro_Days_Tokyo.event_resource.repository;
 
 import java.util.ArrayList;
 
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import exastro.Exastro_Days_Tokyo.event_resource.repository.vo.EventDetailVO;
 import exastro.Exastro_Days_Tokyo.event_resource.repository.vo.EventVO;
 
-@ConfigurationProperties(prefix = "resource.event")
 @Repository
 public interface EventRepository extends JpaRepository<EventVO, String> {
 

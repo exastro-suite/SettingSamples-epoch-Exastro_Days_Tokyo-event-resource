@@ -51,14 +51,6 @@ public class EventVO {
 
 	@Column(name="is_deleted")
 	private boolean isDeleted;
-	
-	public boolean isDeleted() {
-		return isDeleted;
-	}
-
-	public void setDeleted(boolean isDeleted) {
-		this.isDeleted = isDeleted;
-	}
 
 	public EventVO() {
 		
@@ -83,6 +75,14 @@ public class EventVO {
 	}
 	public void setEventDate(Date eventDate) {
 		this.eventDate = eventDate;
+	}
+	
+	public boolean isDeleted() {
+		return isDeleted;
+	}
+
+	public void setDeleted(boolean isDeleted) {
+		this.isDeleted = isDeleted;
 	}
 
 }

@@ -15,48 +15,41 @@
 
 package exastro.Exastro_Days_Tokyo.event_resource.service;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import exastro.Exastro_Days_Tokyo.event_resource.repository.vo.EventDetailVO;
 import exastro.Exastro_Days_Tokyo.event_resource.service.dto.EventDetailDto;
-import exastro.Exastro_Days_Tokyo.event_resource.service.dto.SpeakerDto;
 
 @Service
-public class EventResourceService extends BaseEventService implements EventService {
+public class EventUserServiceImpl extends BaseEventService implements EventUserService {
 
-
-	public EventResourceService() {
+	@Autowired
+	protected SeminarUserService seminarSvc;
+	
+	public EventUserServiceImpl() {
 		
 	}
 
-	public EventDetailDto getEventDetail(int event_id) {
-//		List<EventDetailDto> eventInfo = null;
+	public EventDetailDto getEventDetail(int eventId) {
 		
-		List<Integer> speakerList = null;
-		List<SpeakerDto> speakerInfo = null;
 		EventDetailDto eventInfo =null;
 		
 		try {
 			//イベントID に紐づくイベント情報を取得
-			EventDetailVO ev = event_detail_repo.findByEventIdIs(event_id);
+			EventDetailVO ev = repository.findByEventIdIs(eventId);
 			eventInfo = new EventDetailDto(ev.getEventId(), ev.getEventName(), 
 					ev.getEventOverview(), ev.getEventDate(), ev.getEventVenue());
 
 		
 			//該当イベントを含むセミナー一覧から登壇者IDを取得
-			int eventId = eventInfo.getEventId();
-			speakerList = seminar_repo.findByEventId(eventId)
-					.stream()
-					.map(e -> Integer.valueOf(e.getSpeakerId()))
-					.collect(Collectors.toList());
+			List<Integer> speakerIdList = seminarSvc.getSpeakerIdList(eventId);
 			
 			//登壇者情報をイベント情報内にセット
-			eventInfo.setSpeakerIDs((ArrayList<Integer>) speakerList);
-					}
+			eventInfo.setSpeakerIDs(speakerIdList);
+		}
 		catch(Exception e) {
 			throw e;
 		}

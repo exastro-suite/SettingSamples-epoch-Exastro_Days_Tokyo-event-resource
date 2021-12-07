@@ -19,31 +19,28 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import exastro.Exastro_Days_Tokyo.event_resource.controller.api.v1.form.SeminarDetailForm;
-import exastro.Exastro_Days_Tokyo.event_resource.service.SeminarService;
+import exastro.Exastro_Days_Tokyo.event_resource.service.SeminarUserService;
 import exastro.Exastro_Days_Tokyo.event_resource.service.dto.SeminarDetailDto;
 
-//@RestController
-//@RequestMapping("/api/v1/seminar")
-public class SeminarResourceController {
+@RestController
+@RequestMapping("/api/v1/seminar")
+public class SeminarUserController extends BaseSeminarController {
 	
-	@Autowired
-	protected SeminarService service;
-	
-	public SeminarResourceController() {
-		
+	public SeminarUserController(@Autowired SeminarUserService service) {
+		this.service = service;
 	}
 
-	@GetMapping("/{seminar_id}")
-	public SeminarDetailForm eventDetail(@PathVariable(value = "seminar_id") @Validated int seminar_id) {
+	@GetMapping("/{seminarId}")
+	public SeminarDetailForm eventDetail(@PathVariable(value = "seminarId") @Validated int seminarId) {
 		
 		SeminarDetailForm eventDetail = null;
-		//	public SeminarDetailDto(int seminarId, String seminarName, 
-		//String seminarOverview, Date startDatetime, int blockId, String  blockName, int speakerId) {
 
 		try {
-			SeminarDetailDto e = service.getSeminarDetail(seminar_id);
+			SeminarDetailDto e = service.getSeminarDetail(seminarId);
 			eventDetail = new SeminarDetailForm(e.getSeminarId(), e.getSeminarName(),
 					 e.getSeminarOverview(), e.getStartDatetime(), e.getBlockId(),e.getBlockName(), e.getSpeakerId());
 		

@@ -24,8 +24,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import exastro.Exastro_Days_Tokyo.event_resource.controller.api.v1.form.EventForm;
 import exastro.Exastro_Days_Tokyo.event_resource.service.EventService;
 
-//@RestController
-//@RequestMapping("/api/v1/event")
 public class BaseEventController {
 	
 	@Autowired

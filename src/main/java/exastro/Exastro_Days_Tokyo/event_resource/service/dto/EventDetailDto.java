@@ -17,11 +17,12 @@ package exastro.Exastro_Days_Tokyo.event_resource.service.dto;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class EventDetailDto extends EventDto{
 	private String eventOverview;
 	private String eventVenue;
-	private  ArrayList<Integer> speakerIDs = new ArrayList<Integer>();
+	private List<Integer> speakerIDs = new ArrayList<Integer>();
 	private boolean isDeleted;
 
 	public EventDetailDto() {
@@ -35,11 +36,11 @@ public class EventDetailDto extends EventDto{
 		this.eventVenue = eventVenue;
 	}
 	
-	public ArrayList<Integer> getSpeakerIDs() {
+	public List<Integer> getSpeakerIDs() {
 		return speakerIDs;
 	}
 
-	public void setSpeakerIDs(ArrayList<Integer> speakerIDs) {
+	public void setSpeakerIDs(List<Integer> speakerIDs) {
 		this.speakerIDs = speakerIDs;
 	}
 

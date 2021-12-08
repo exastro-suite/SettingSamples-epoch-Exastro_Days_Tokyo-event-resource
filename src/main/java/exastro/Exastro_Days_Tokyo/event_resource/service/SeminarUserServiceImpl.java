@@ -38,8 +38,8 @@ public class SeminarUserServiceImpl extends BaseSeminarService implements Semina
 		try {
 			//セミナーID に紐づくセミナー情報を取得
 			SeminarDetailVO ev = repository.findBySeminarId(seminarId);
-			seminarInfo = new SeminarDetailDto(ev.getSeminarId(), ev.getSeminarName(),
-					 ev.getSeminarOverview(), ev.getStartDatetime(), ev.getBlockId(),ev.getBlockName(), ev.getSpeakerId());
+			seminarInfo = new SeminarDetailDto(ev.getSeminarId(), ev.getMstSeminar().getSeminarName(),
+					 ev.getSeminarOverview(), ev.getStartDatetime(), ev.getMstBlock().getBlockId(),ev.getMstBlock().getBlockName(), ev.getSpeakerId());
 					}
 		catch(Exception e) {
 			throw e;
@@ -53,7 +53,7 @@ public class SeminarUserServiceImpl extends BaseSeminarService implements Semina
 		List<Integer> speakerIdList = null;
 		
 		try {
-			speakerIdList = repository.findDetailByEventId(eventId)
+			speakerIdList = repository.findDetailByEventEventId(eventId)
 					.stream()
 					.map(e -> e.getSpeakerId())
 					.distinct()

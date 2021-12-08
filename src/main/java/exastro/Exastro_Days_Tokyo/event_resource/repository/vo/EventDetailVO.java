@@ -54,6 +54,10 @@ public class EventDetailVO {
 	@Column(name="is_deleted")
 	private boolean isDeleted;
 
+	public EventDetailVO() {
+		
+	}
+
 //	private  ArrayList<SpeakerVO> speakerVO = new ArrayList<SpeakerVO>();
 
 	public int getEventId() {

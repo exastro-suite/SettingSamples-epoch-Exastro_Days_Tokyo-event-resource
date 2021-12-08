@@ -40,5 +40,17 @@ public class BlockVO {
 	@Column(name="block_name")
 	private String blockName;
 
-}
+	public int getBlockId() {
+		return this.blockId;
+	}
+	public void setBlockId(int blockId) {
+		this.blockId = blockId;
+	}
 
+	public String getBlockName() {
+		return this.blockName;
+	}
+	public void setBlockName(String blockName) {
+		this.blockName = blockName;
+	}
+}

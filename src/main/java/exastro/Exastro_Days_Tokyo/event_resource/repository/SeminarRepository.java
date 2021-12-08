@@ -28,7 +28,7 @@ public interface SeminarRepository extends JpaRepository<SeminarVO, String> {
 
 
 	//イベントに紐づくセミナー一覧を取得
-	List<SeminarVO>  findByEventId(int eventId);
+	List<SeminarVO>  findByEventEventId(int eventId);
 
 
 	//セミナー詳細を取得
@@ -36,5 +36,5 @@ public interface SeminarRepository extends JpaRepository<SeminarVO, String> {
 
 
 	//イベントに紐づくセミナーの詳細付き一覧を取得
-	List<SeminarDetailVO>  findDetailByEventId(int eventId);
+	List<SeminarDetailVO>  findDetailByEventEventId(int eventId);
 }

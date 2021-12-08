@@ -24,17 +24,10 @@ public class SeminarDetailVO extends SeminarVO {
 //	定員
 	@Column(name="capacity")
 	private int capacity;
-
-//	@OneToOne
-//    @JoinColumns({
-//        @JoinColumn(name = "block_id", referencedColumnName = "block_id")
-//    })
-//    private BlockVO  block;
-
-
+	
 	public SeminarDetailVO(int seminarId, String seminarName, 
 			String seminarOverview, Date startDatetime, int blockId, String  blockName, int speakerId) {
-		super(seminarId, seminarName, blockId, blockName);
+		super(seminarId);
 		this.seminarOverview = seminarOverview;
 		this.startDatetime = startDatetime;
 		this.speakerId = speakerId;

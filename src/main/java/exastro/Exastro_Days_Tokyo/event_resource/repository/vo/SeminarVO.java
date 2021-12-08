@@ -5,24 +5,30 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 /**
- * The persistent class for the events database table.
+ * The persistent class for the seminars database table.
  * 
  */
 @Entity
 @Table(name="seminars")
 public class SeminarVO {
 
-	@Column(name="mst_seminar_id")
-	protected int mstSeminarId;
-	
-	@Column(name="seminar_name")
-	protected String seminarName;
+//	@Column(name="mst_seminar_id")
+//	protected int mstSeminarId;
+//	
+//	@Column(name="seminar_name")
+//	protected String seminarName;
+
+	@ManyToOne
+	@JoinColumn(name = "mst_seminar_id")
+	protected MstSeminarVO mstSeminar;
 	
 	@Id
 	@Column(name="seminar_id")
@@ -34,37 +40,47 @@ public class SeminarVO {
 	@Column(name="is_deleted")
 	protected int isDeleted;
 	
-	@Column(name="block_id")
-	protected int blockId;
+//	@Column(name="block_id")
+//	protected int blockId;
 	
 	@Column(name="speaker_id")
 	protected int speakerId;
 	
-	@Column(name="event_id")
-	protected int eventId;
+//	@Column(name="event_id")
+//	protected int eventId;
 	
-	protected String blockName;
+	@ManyToOne
+	@JoinColumn(name = "event_id")
+	protected EventDetailVO event;
+
+	@ManyToOne
+	@JoinColumn(name = "block_id")
+	protected BlockVO mstBlock;
 	
-	public SeminarVO(int seminarId, String seminarName, int blockId, String blockName) {
-		this.seminarName = seminarName;
+	public SeminarVO(int seminarId) {
 		this.seminarId = seminarId;
-		this.blockId = blockId;
-		this.blockName = blockName;
 	}
 	
-	public int getMstSeminarId() {
-		return mstSeminarId;
+	public MstSeminarVO getMstSeminar() {
+		return mstSeminar;
 	}
-	public void setMstSeminarId(int mstSeminarId) {
-		this.mstSeminarId = mstSeminarId;
+	public void setMstSeminar(MstSeminarVO mstSeminar) {
+		this.mstSeminar = mstSeminar;
 	}
 	
-	public String getSeminarName() {
-		return seminarName;
-	}
-	public void setSeminarName(String seminarName) {
-		this.seminarName = seminarName;
-	}
+//	public int getMstSeminarId() {
+//		return mstSeminarId;
+//	}
+//	public void setMstSeminarId(int mstSeminarId) {
+//		this.mstSeminarId = mstSeminarId;
+//	}
+//	
+//	public String getSeminarName() {
+//		return seminarName;
+//	}
+//	public void setSeminarName(String seminarName) {
+//		this.seminarName = seminarName;
+//	}
 	
 	public int getSeminarId() {
 		return seminarId;
@@ -87,12 +103,19 @@ public class SeminarVO {
 		this.isDeleted = isDeleted;
 	}
 	
-	public int getBlockId() {
-		return blockId;
+	public BlockVO getMstBlock() {
+		return mstBlock;
 	}
-	public void setBlockId(int blockId) {
-		this.blockId = blockId;
+	public void setMstBlock(BlockVO mstBlock) {
+		this.mstBlock = mstBlock;
 	}
+	
+//	public int getBlockId() {
+//		return blockId;
+//	}
+//	public void setBlockId(int blockId) {
+//		this.blockId = blockId;
+//	}
 	
 	public int getSpeakerId() {
 		return speakerId;
@@ -101,19 +124,26 @@ public class SeminarVO {
 		this.speakerId = speakerId;
 	}
 	
-	public int getEventId() {
-		return eventId;
+	public EventDetailVO getEvent() {
+		return event;
 	}
-	public void setEventId(int eventId) {
-		this.eventId = eventId;
+	public void setEvent(EventDetailVO event) {
+		this.event = event;
 	}
 	
-	public String getBlockName() {
-		return blockName;
-	}
-	public void setBlockName(String blockName) {
-		this.blockName = blockName;
-	}
+//	public int getEventId() {
+//		return eventId;
+//	}
+//	public void setEventId(int eventId) {
+//		this.eventId = eventId;
+//	}
+//	
+//	public String getBlockName() {
+//		return blockName;
+//	}
+//	public void setBlockName(String blockName) {
+//		this.blockName = blockName;
+//	}
 	
 }
 

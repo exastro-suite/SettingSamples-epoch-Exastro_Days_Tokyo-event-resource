@@ -20,12 +20,12 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import exastro.Exastro_Days_Tokyo.event_resource.service.dto.SeminarDetailDto;
-import exastro.Exastro_Days_Tokyo.event_resource.service.dto.SeminarDto;
+import exastro.Exastro_Days_Tokyo.event_resource.service.dto.SeminarListDto;
 
 @Service
 public interface SeminarService {
 
-	public List<SeminarDto> getSeminar(int eventId);
+	public List<SeminarListDto> getSeminar(int eventId);
 
 	public SeminarDetailDto getSeminarDetail(int seminarId);
 }

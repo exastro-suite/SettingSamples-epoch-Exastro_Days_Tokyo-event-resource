@@ -18,14 +18,18 @@ package exastro.Exastro_Days_Tokyo.event_resource.controller.api.v1;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import exastro.Exastro_Days_Tokyo.event_resource.controller.api.v1.form.SeminarListForm;
 import exastro.Exastro_Days_Tokyo.event_resource.service.SeminarService;
 
-public class BaseSeminarController{
+//@RestController
+//@RequestMapping("/api/v1/seminar")
+public class BaseSeminarController {
 	
+	@Autowired
 	protected SeminarService service;
 	
 	public BaseSeminarController() {
@@ -40,7 +44,7 @@ public class BaseSeminarController{
 		try {
 			seminarList = service.getSeminar(eventId)
 					.stream()
-					.map(s -> new SeminarListForm(s.getSeminarId(), s.getSeminarName(), s.getStartDatetime()))
+					.map(s -> new SeminarListForm(s.getSeminarId(), s.getMstSeminarName(), s.getBlockId(), s.getBlockName(), s.getStartDatetime()))
 					.collect(Collectors.toList());
 		}
 		catch(Exception e) {

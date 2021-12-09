@@ -17,32 +17,7 @@ package exastro.Exastro_Days_Tokyo.event_resource.controller.api.v1.form;
 
 import java.util.Date;
 
-public class SeminarDetailForm extends SeminarForm{
-
-	public SeminarDetailForm(int seminarId) {
-		super();
-		// TODO 自動生成されたコンストラクター・スタブ
-	}
-	
-	public SeminarDetailForm(int seminarId, String seminarName, 
-			String seminarOverview, Date startDatetime, int blockId, String  blockName, int speakerId ) {
-	}
-
-	//	public SeminarDetailDto(int seminarId, String seminarName, 
-	//String seminarOverview, Date startDatetime, int blockId, String  blockName, int speakerId) {
-
-	
-//	セミナーID
-	private int seminarId;
-	
-//	ブロックID
-	private int blockId;
-
-//	ブロック名
-	private String blockName;
-
-//	開催日時(開始)
-	private String startDatetime;
+public class SeminarDetailForm extends SeminarListForm{
 
 //	登壇者ID
 	private int speakerId;
@@ -52,37 +27,23 @@ public class SeminarDetailForm extends SeminarForm{
 
 //	定員
 	private int capacity;
+	
+//	登壇者名
+	private String speakerName;
 
-	public int getSeminarId() {
-		return seminarId;
-	}
+//	登壇者プロフィール
+	private String speakerProfile;
 
-	public void setSeminarId(int seminarId) {
-		this.seminarId = seminarId;
-	}
+//	終了時刻は値としてもたない？
 
-	public int getBlockId() {
-		return blockId;
-	}
-
-	public void setBlockId(int blockId) {
-		this.blockId = blockId;
-	}
-
-	public String getBlockName() {
-		return blockName;
-	}
-
-	public void setBlockName(String blockName) {
-		this.blockName = blockName;
-	}
-
-	public String getStartDatetime() {
-		return startDatetime;
-	}
-
-	public void setStartDatetime(String startDatetime) {
-		this.startDatetime = startDatetime;
+	public SeminarDetailForm(int seminarId, String mstSeminarName, int blockId, String blockName, Date startDatetime ,
+			int speakerId, String seminarOverview, int capacity, String speakerName, String speakerProfile){
+		super(seminarId, mstSeminarName, blockId, blockName, startDatetime);
+		this.speakerId = speakerId;
+		this.seminarOverview = seminarOverview;
+		this.capacity = capacity;
+		this.speakerName = speakerName;
+		this.speakerProfile = speakerProfile;
 	}
 
 	public int getSpeakerId() {
@@ -107,6 +68,22 @@ public class SeminarDetailForm extends SeminarForm{
 
 	public void setCapacity(int capacity) {
 		this.capacity = capacity;
+	}
+
+	public String getSpeakerName() {
+		return speakerName;
+	}
+
+	public void setSpeakerName(String speakerName) {
+		this.speakerName = speakerName;
+	}
+
+	public String getSpeakerProfile() {
+		return speakerProfile;
+	}
+
+	public void setSpeakerProfile(String speakerProfile) {
+		this.speakerProfile = speakerProfile;
 	}
 	
 }

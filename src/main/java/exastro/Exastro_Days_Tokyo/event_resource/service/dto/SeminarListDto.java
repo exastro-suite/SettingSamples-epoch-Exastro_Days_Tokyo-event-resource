@@ -8,7 +8,7 @@ public class SeminarListDto {
 	private int seminarId;
 
 //	セミナー名
-	private String mstSeminarName;
+	private String seminarName;
 	
 //	ブロックID
 	private int blockId;
@@ -19,9 +19,9 @@ public class SeminarListDto {
 //	開催日時(開始)
 	private Date startDatetime;
 	
-	public SeminarListDto(int seminarId, String mstSeminarName, int blockId, String blockName, Date startDatetime ) {
+	public SeminarListDto(int seminarId, String seminarName, int blockId, String blockName, Date startDatetime ) {
 		this.seminarId = seminarId;
-		this.mstSeminarName = mstSeminarName;
+		this.seminarName = seminarName;
 		this.blockId = blockId;
 		this.blockName = blockName;
 		this.startDatetime = startDatetime;
@@ -35,12 +35,12 @@ public class SeminarListDto {
 		this.seminarId = seminarId;
 	}
 
-	public String getMstSeminarName() {
-		return mstSeminarName;
+	public String getSeminarName() {
+		return seminarName;
 	}
 
-	public void setMstSeminarName(String mstSeminarName) {
-		this.mstSeminarName = mstSeminarName;
+	public void setSeminarName(String seminarName) {
+		this.seminarName = seminarName;
 	}
 
 	public int getBlockId() {
@@ -67,7 +67,4 @@ public class SeminarListDto {
 		this.startDatetime = startDatetime;
 	}
 	
-	
 }
-
-

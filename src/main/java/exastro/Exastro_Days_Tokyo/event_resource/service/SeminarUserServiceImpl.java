@@ -38,8 +38,8 @@ public class SeminarUserServiceImpl extends BaseSeminarService implements Semina
 		try {
 			//セミナーID に紐づくセミナー情報を取得
 			SeminarDetail ev = repository.findBySeminarId(seminarId);
-			seminarInfo = new SeminarDetailDto(ev.getSeminarId(), ev.getMstSeminar().getSeminarName(),
-					 ev.getMstSeminar().getSeminarOverview(), ev.getStartDatetime(), ev.getBlock().getBlockId(),ev.getBlock().getBlockName(), ev.getSpeakerId());
+			seminarInfo = new SeminarDetailDto(ev.getSeminarId(), ev.getMstSeminar().getSeminarName(), ev.getBlock().getBlockId(), ev.getBlock().getBlockName(),
+					 ev.getStartDatetime(), ev.getSpeakerId(), ev.getMstSeminar().getSeminarOverview(), ev.getMstSeminar().getCapacity());
 		}
 		catch(Exception e) {
 			throw e;

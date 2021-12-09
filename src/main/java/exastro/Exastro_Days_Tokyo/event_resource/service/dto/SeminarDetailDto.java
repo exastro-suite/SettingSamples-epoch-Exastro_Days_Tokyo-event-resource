@@ -2,10 +2,7 @@ package exastro.Exastro_Days_Tokyo.event_resource.service.dto;
 
 import java.util.Date;
 
-public class SeminarDetailDto extends SeminarDto{
-
-//	開催日時(開始)
-	private Date startDatetime;
+public class SeminarDetailDto extends SeminarListDto{
 
 //	登壇者ID
 	private int speakerId;
@@ -15,20 +12,16 @@ public class SeminarDetailDto extends SeminarDto{
 
 //	定員
 	private int capacity;
-	private int isDeleted;
 
+//	終了時刻は値としてもたない？
 
-	public SeminarDetailDto(int seminarId) {
-		super();
-	}
-
-
-	public SeminarDetailDto(int seminarId, String seminarName, 
-			String seminarOverview, Date startDatetime, int blockId, String  blockName, int speakerId) {
-		super(seminarId, seminarName, blockId, blockName);
-		this.seminarOverview = seminarOverview;
-		this.startDatetime = startDatetime;
+	
+	public SeminarDetailDto(int seminarId, String seminarName, int blockId, String blockName, Date startDatetime ,
+			int speakerId, String seminarOverview, int capacity){
+		super(seminarId, seminarName, blockId, blockName, startDatetime);
 		this.speakerId = speakerId;
+		this.seminarOverview = seminarOverview;
+		this.capacity = capacity;
 	}
 
 	public int getSpeakerId() {
@@ -53,22 +46,6 @@ public class SeminarDetailDto extends SeminarDto{
 
 	public void setCapacity(int capacity) {
 		this.capacity = capacity;
-	}
-
-	public Date getStartDatetime() {
-		return startDatetime;
-	}
-
-	public void setStartDatetime(Date startDatetime) {
-		this.startDatetime = startDatetime;
-	}
-
-	public int getIsDeleted() {
-		return isDeleted;
-	}
-
-	public void setIsDeleted(int isDeleted) {
-		this.isDeleted = isDeleted;
 	}
 	
 }

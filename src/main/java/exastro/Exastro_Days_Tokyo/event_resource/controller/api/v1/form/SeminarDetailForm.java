@@ -27,23 +27,16 @@ public class SeminarDetailForm extends SeminarListForm{
 
 //	定員
 	private int capacity;
-	
-//	登壇者名
-	private String speakerName;
-
-//	登壇者プロフィール
-	private String speakerProfile;
 
 //	終了時刻は値としてもたない？
 
-	public SeminarDetailForm(int seminarId, String mstSeminarName, int blockId, String blockName, Date startDatetime ,
-			int speakerId, String seminarOverview, int capacity, String speakerName, String speakerProfile){
-		super(seminarId, mstSeminarName, blockId, blockName, startDatetime);
+	
+	public SeminarDetailForm(int seminarId, String seminarName, int blockId, String blockName, Date startDatetime ,
+			int speakerId, String seminarOverview, int capacity){
+		super(seminarId, seminarName, blockId, blockName, startDatetime);
 		this.speakerId = speakerId;
 		this.seminarOverview = seminarOverview;
 		this.capacity = capacity;
-		this.speakerName = speakerName;
-		this.speakerProfile = speakerProfile;
 	}
 
 	public int getSpeakerId() {
@@ -68,22 +61,6 @@ public class SeminarDetailForm extends SeminarListForm{
 
 	public void setCapacity(int capacity) {
 		this.capacity = capacity;
-	}
-
-	public String getSpeakerName() {
-		return speakerName;
-	}
-
-	public void setSpeakerName(String speakerName) {
-		this.speakerName = speakerName;
-	}
-
-	public String getSpeakerProfile() {
-		return speakerProfile;
-	}
-
-	public void setSpeakerProfile(String speakerProfile) {
-		this.speakerProfile = speakerProfile;
 	}
 	
 }

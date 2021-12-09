@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import exastro.Exastro_Days_Tokyo.event_resource.repository.SeminarRepository;
-import exastro.Exastro_Days_Tokyo.event_resource.service.dto.SeminarDto;
+import exastro.Exastro_Days_Tokyo.event_resource.service.dto.SeminarListDto;
 
 public abstract class BaseSeminarService {
 
@@ -32,14 +32,14 @@ public abstract class BaseSeminarService {
 		
 	}
 
-	public List<SeminarDto> getSeminar(int eventId) {
+	public List<SeminarListDto> getSeminar(int eventId) {
 		
-		List<SeminarDto> seminarList = null;
+		List<SeminarListDto> seminarList = null;
 		
 		try {
 			seminarList = repository.findByEventEventId(eventId)
 					.stream()
-					.map(e -> new SeminarDto(e.getSeminarId(), e.getMstSeminar().getSeminarName(), e.getBlock().getBlockId(), e.getBlock().getBlockName()))
+					.map(e -> new SeminarListDto(e.getSeminarId(),e.getMstSeminar().getSeminarName(), e.getBlock().getBlockId(), e.getBlock().getBlockName(), e.getStartDatetime()))
 					.collect(Collectors.toList());
 		}
 		catch(Exception e) {

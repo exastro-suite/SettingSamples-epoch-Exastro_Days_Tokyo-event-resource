@@ -41,9 +41,8 @@ public class SeminarUserController extends BaseSeminarController {
 
 		try {
 			SeminarDetailDto e = service.getSeminarDetail(seminarId);
-			eventDetail = new SeminarDetailForm(e.getSeminarId(), e.getSeminarName(),
-					 e.getSeminarOverview(), e.getStartDatetime(), e.getBlockId(),e.getBlockName(), e.getSpeakerId());
-		
+			eventDetail = new SeminarDetailForm(e.getSeminarId(), e.getSeminarName(), e.getBlockId(), e.getBlockName(),
+					 e.getStartDatetime(), e.getSpeakerId(), e.getSeminarOverview(), e.getCapacity());		
 		}
 		catch(Exception e) {
 			throw e;

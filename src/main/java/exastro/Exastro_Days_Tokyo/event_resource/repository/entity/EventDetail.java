@@ -13,9 +13,9 @@
  *   limitations under the License.
  */
 
-package exastro.Exastro_Days_Tokyo.event_resource.repository.vo;
+package exastro.Exastro_Days_Tokyo.event_resource.repository.entity;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -31,8 +31,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  */
 @Entity
 @Table(name="events")
-//@NamedQuery(name="Event.findAll", query="SELECT e FROM Event e")
-public class EventDetailVO {
+public class EventDetail {
 	
 	@Id
 	@Column(name="event_id")
@@ -41,25 +40,24 @@ public class EventDetailVO {
 	@Column(name="event_name")
 	private String eventName;
 	
-	
 	@Column(name="event_overview")
 	private String eventOverview;
-
+	
 	@Column(name="event_date")
-	private Date eventDate;
-
+	private Timestamp eventDate;
+	
 	@Column(name="event_venue")
 	private String eventVenue;
 	
-	@Column(name="is_deleted")
-	private boolean isDeleted;
-
-	public EventDetailVO() {
-		
+	@Column(name="delete_flag")
+	private boolean deleteFlag;
+	
+	public EventDetail(String eventName, Timestamp eventDate) {
+		this.eventName = eventName;
+		this.eventDate = eventDate;
+		this.deleteFlag = false;
 	}
-
-//	private  ArrayList<SpeakerVO> speakerVO = new ArrayList<SpeakerVO>();
-
+	
 	public int getEventId() {
 		return eventId;
 	}
@@ -81,10 +79,10 @@ public class EventDetailVO {
 		this.eventOverview = eventOverview;
 	}
 	
-	public Date getEventDate() {
+	public Timestamp getEventDate() {
 		return eventDate;
 	}
-	public void setEventDate(Date eventDate) {
+	public void setEventDate(Timestamp eventDate) {
 		this.eventDate = eventDate;
 	}
 	
@@ -95,20 +93,11 @@ public class EventDetailVO {
 		this.eventVenue = eventVenue;
 	}
 
-	public boolean isDeleted() {
-		return isDeleted;
+	public boolean getDeleteFlag() {
+		return deleteFlag;
 	}
-	public void setDeleted(boolean isDeleted) {
-		this.isDeleted = isDeleted;
+	public void setDeleteFlag(boolean deleteFlag) {
+		this.deleteFlag = deleteFlag;
 	}
-
-//	public ArrayList<SpeakerVO> getSpeakerVO() {
-//		return speakerVO;
-//	}
-//	
-//	public void setSpeakerVO(ArrayList<SpeakerVO> speakerVO) {
-//		this.speakerVO = new ArrayList<SpeakerVO>(speakerVO);
-//	}
 	
 }
-

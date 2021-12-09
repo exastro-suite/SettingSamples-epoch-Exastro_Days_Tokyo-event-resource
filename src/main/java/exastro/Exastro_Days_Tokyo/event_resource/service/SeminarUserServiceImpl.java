@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
-import exastro.Exastro_Days_Tokyo.event_resource.repository.vo.SeminarDetailVO;
+import exastro.Exastro_Days_Tokyo.event_resource.repository.entity.SeminarDetail;
 import exastro.Exastro_Days_Tokyo.event_resource.service.dto.SeminarDetailDto;
 
 @Service
@@ -37,10 +37,10 @@ public class SeminarUserServiceImpl extends BaseSeminarService implements Semina
 
 		try {
 			//セミナーID に紐づくセミナー情報を取得
-			SeminarDetailVO ev = repository.findBySeminarId(seminarId);
+			SeminarDetail ev = repository.findBySeminarId(seminarId);
 			seminarInfo = new SeminarDetailDto(ev.getSeminarId(), ev.getMstSeminar().getSeminarName(),
-					 ev.getSeminarOverview(), ev.getStartDatetime(), ev.getMstBlock().getBlockId(),ev.getMstBlock().getBlockName(), ev.getSpeakerId());
-					}
+					 ev.getMstSeminar().getSeminarOverview(), ev.getStartDatetime(), ev.getBlock().getBlockId(),ev.getBlock().getBlockName(), ev.getSpeakerId());
+		}
 		catch(Exception e) {
 			throw e;
 		}

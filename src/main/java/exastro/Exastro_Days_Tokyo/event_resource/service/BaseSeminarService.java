@@ -39,7 +39,7 @@ public abstract class BaseSeminarService {
 		try {
 			seminarList = repository.findByEventEventId(eventId)
 					.stream()
-					.map(e -> new SeminarDto(e.getSeminarId(), e.getMstSeminar().getSeminarName(), e.getMstBlock().getBlockId(), e.getMstBlock().getBlockName()))
+					.map(e -> new SeminarDto(e.getSeminarId(), e.getMstSeminar().getSeminarName(), e.getBlock().getBlockId(), e.getBlock().getBlockName()))
 					.collect(Collectors.toList());
 		}
 		catch(Exception e) {

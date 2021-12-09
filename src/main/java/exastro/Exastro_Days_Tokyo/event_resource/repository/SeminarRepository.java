@@ -20,21 +20,21 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import exastro.Exastro_Days_Tokyo.event_resource.repository.vo.SeminarDetailVO;
-import exastro.Exastro_Days_Tokyo.event_resource.repository.vo.SeminarVO;
+import exastro.Exastro_Days_Tokyo.event_resource.repository.entity.Seminar;
+import exastro.Exastro_Days_Tokyo.event_resource.repository.entity.SeminarDetail;
 
 @Repository
-public interface SeminarRepository extends JpaRepository<SeminarVO, String> {
+public interface SeminarRepository extends JpaRepository<SeminarDetail, String> {
 
 
 	//イベントに紐づくセミナー一覧を取得
-	List<SeminarVO>  findByEventEventId(int eventId);
+	List<Seminar>  findByEventEventId(int eventId);
 
 
 	//セミナー詳細を取得
-	SeminarDetailVO  findBySeminarId(int seminarId);
+	SeminarDetail  findBySeminarId(int seminarId);
 
 
 	//イベントに紐づくセミナーの詳細付き一覧を取得
-	List<SeminarDetailVO>  findDetailByEventEventId(int eventId);
+	List<SeminarDetail>  findDetailByEventEventId(int eventId);
 }

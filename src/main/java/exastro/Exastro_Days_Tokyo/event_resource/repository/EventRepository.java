@@ -20,18 +20,18 @@ import java.util.ArrayList;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import exastro.Exastro_Days_Tokyo.event_resource.repository.vo.EventDetailVO;
-import exastro.Exastro_Days_Tokyo.event_resource.repository.vo.EventVO;
+import exastro.Exastro_Days_Tokyo.event_resource.repository.entity.Event;
+import exastro.Exastro_Days_Tokyo.event_resource.repository.entity.EventDetail;
 
 @Repository
-public interface EventRepository extends JpaRepository<EventVO, String> {
+public interface EventRepository extends JpaRepository<EventDetail, String> {
 
 	//イベント一覧を取得
-	ArrayList<EventVO> findByIsDeleted(boolean isDeleted);
+	ArrayList<Event> findByDeleteFlagFalse();
 	
 	//イベント詳細情報を取得
-	EventDetailVO  findByEventIdIs(int eventId);
+	EventDetail findByEventIdIs(int eventId);
 
 	//セミナー一覧から登壇者ID 取得
-//	ArrayList<SpeakerVO> findBySpeakerIdIn(List<Integer> speakerList);
+//	ArrayList<Speaker> findBySpeakerIdIn(List<Integer> speakerList);
 }

@@ -20,7 +20,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import exastro.Exastro_Days_Tokyo.event_resource.repository.vo.EventDetailVO;
+import exastro.Exastro_Days_Tokyo.event_resource.repository.entity.EventDetail;
 import exastro.Exastro_Days_Tokyo.event_resource.service.dto.EventDetailDto;
 
 @Service
@@ -39,7 +39,7 @@ public class EventUserServiceImpl extends BaseEventService implements EventUserS
 		
 		try {
 			//イベントID に紐づくイベント情報を取得
-			EventDetailVO ev = repository.findByEventIdIs(eventId);
+			EventDetail ev = repository.findByEventIdIs(eventId);
 			eventInfo = new EventDetailDto(ev.getEventId(), ev.getEventName(), 
 					ev.getEventOverview(), ev.getEventDate(), ev.getEventVenue());
 

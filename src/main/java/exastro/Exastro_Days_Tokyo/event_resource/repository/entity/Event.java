@@ -13,12 +13,9 @@
  *   limitations under the License.
  */
 
-package exastro.Exastro_Days_Tokyo.event_resource.repository.vo;
+package exastro.Exastro_Days_Tokyo.event_resource.repository.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import java.sql.Timestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -27,30 +24,18 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  * The persistent class for the events database table.
  * 
  */
-@Entity
-@Table(name="mst_blocks")
-//@NamedQuery(name="Event.findAll", query="SELECT e FROM Event e")
-public class BlockVO {
-	private static final long serialVersionUID = 1L;
+public interface Event {
 	
-	@Id
-	@Column(name="block_id")
-	private int blockId;
+	public int getEventId();
 	
-	@Column(name="block_name")
-	private String blockName;
+	public String getEventName();
+	
+//	public String getEventOverview();
+	
+	public Timestamp getEventDate();
+	
+//	public String getEventVenue();
+	
+//	public boolean getDeleteFlag();
 
-	public int getBlockId() {
-		return this.blockId;
-	}
-	public void setBlockId(int blockId) {
-		this.blockId = blockId;
-	}
-
-	public String getBlockName() {
-		return this.blockName;
-	}
-	public void setBlockName(String blockName) {
-		this.blockName = blockName;
-	}
 }

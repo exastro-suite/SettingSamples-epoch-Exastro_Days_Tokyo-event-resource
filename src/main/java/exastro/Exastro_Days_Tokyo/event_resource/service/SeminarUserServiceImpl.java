@@ -56,6 +56,7 @@ public class SeminarUserServiceImpl extends BaseSeminarService implements Semina
 			speakerIdList = repository.findDetailByEventEventId(eventId)
 					.stream()
 					.map(e -> e.getSpeakerId())
+					.filter(e -> e != null)
 					.distinct()
 					.collect(Collectors.toList());
 		}

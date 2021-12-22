@@ -44,10 +44,13 @@ public class MstSeminar {
 	
 	// 定員
 	@Column(name="capacity")
-	private int capacity;
+	private Integer capacity;
 	
 	@Column(name="delete_flag")
 	private boolean deleteFlag;
+	
+	public MstSeminar() {
+	}
 	
 	// コンストラクタ
 	public MstSeminar(String seminarName) {
@@ -76,10 +79,10 @@ public class MstSeminar {
 		this.seminarOverview = seminarOverview;
 	}
 
-	public int getCapacity() {
+	public Integer getCapacity() {
 		return capacity;
 	}
-	public void setCapacity(int capacity) {
+	public void setCapacity(Integer capacity) {
 		this.capacity = capacity;
 	}
 

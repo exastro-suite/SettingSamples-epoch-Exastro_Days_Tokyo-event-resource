@@ -41,6 +41,9 @@ public class Block {
 	@Column(name="delete_flag")
 	private boolean deleteFlag;
 	
+	public Block() {
+	}	
+	
 	public Block(String blockName) {
 		this.blockName = blockName;
 		this.deleteFlag = false;

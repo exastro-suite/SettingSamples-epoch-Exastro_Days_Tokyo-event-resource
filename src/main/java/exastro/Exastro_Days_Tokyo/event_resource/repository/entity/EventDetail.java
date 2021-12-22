@@ -52,6 +52,9 @@ public class EventDetail {
 	@Column(name="delete_flag")
 	private boolean deleteFlag;
 	
+	public EventDetail() {
+	}
+	
 	public EventDetail(String eventName, Timestamp eventDate) {
 		this.eventName = eventName;
 		this.eventDate = eventDate;

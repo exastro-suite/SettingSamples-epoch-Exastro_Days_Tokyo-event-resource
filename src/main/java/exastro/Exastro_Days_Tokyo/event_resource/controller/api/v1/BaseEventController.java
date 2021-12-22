@@ -29,10 +29,11 @@ public class BaseEventController {
 	@Autowired
 	protected EventService service;
 	
+	
 	public BaseEventController() {
 		
 	}
-	
+	//イベント一覧取得
 	@GetMapping("")
 	public List<EventForm> event() {
 		

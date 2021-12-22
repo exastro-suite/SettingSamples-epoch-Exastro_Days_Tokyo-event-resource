@@ -54,11 +54,14 @@ public class SeminarDetail {
 	private Block block;
 	
 	@Column(name="speaker_id")
-	private int speakerId;
+	private Integer speakerId;
 	
 	@ManyToOne
 	@JoinColumn(name = "event_id")
 	private EventDetail event;
+	
+	public SeminarDetail() {
+	}
 	
 	// コンストラクタ
 	public SeminarDetail(Timestamp startDatetime, MstSeminar mstSeminar, Block block, EventDetail event) {
@@ -108,11 +111,11 @@ public class SeminarDetail {
 		this.block = block;
 	}
 
-	public int getSpeakerId() {
+	public Integer getSpeakerId() {
 		return speakerId;
 	}
 
-	public void setSpeakerId(int speakerId) {
+	public void setSpeakerId(Integer speakerId) {
 		this.speakerId = speakerId;
 	}
 

@@ -27,9 +27,6 @@ public class SeminarDetailForm extends SeminarListForm{
 
 //	定員
 	private int capacity;
-
-//	終了時刻は値としてもたない？
-
 	
 	public SeminarDetailForm(int seminarId, String seminarName, int blockId, String blockName, Date startDatetime ,
 			int speakerId, String seminarOverview, int capacity){

@@ -26,7 +26,7 @@ public class EventDetailForm {
 	private String eventOverview;
 	private Date eventDate;
 	private String eventVenue;
-	private boolean isDeleted;
+	private boolean deleteFlag;
 	private List<Integer> speakerIDs;
 
 	public EventDetailForm(int eventId, String eventName, 
@@ -45,21 +45,18 @@ public class EventDetailForm {
 	public void setEventId(int eventId) {
 		this.eventId = eventId;
 	}
-	
 	public String getEventName() {
 		return eventName;
 	}
 	public void setEventName(String eventName) {
 		this.eventName = eventName;
 	}
-	
 	public String getEventOverview() {
 		return eventOverview;
 	}
 	public void setEventOverview(String eventOverview) {
 		this.eventOverview = eventOverview;
 	}
-	
 	public Date getEventDate() {
 		return eventDate;
 	}
@@ -73,18 +70,15 @@ public class EventDetailForm {
 	public void setEventVenue(String eventVenue) {
 		this.eventVenue = eventVenue;
 	}
-	
-	public boolean isDeleted() {
-		return isDeleted;
+	public boolean isDeleteFlag() {
+		return deleteFlag;
 	}
-	public void setDeleted(boolean isDeleted) {
-		this.isDeleted = isDeleted;
+	public void setDeleteFlag(boolean deleteFlag) {
+		this.deleteFlag = deleteFlag;
 	}
-
 	public List<Integer> getSpeakerIDs() {
 		return speakerIDs;
 	}
-
 	public void setSpeakerIDs(List<Integer> speakerIDs) {
 		this.speakerIDs = speakerIDs;
 	}

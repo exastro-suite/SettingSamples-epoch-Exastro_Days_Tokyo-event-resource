@@ -33,7 +33,7 @@ public class EventUserController extends BaseEventController {
 	public EventUserController(@Autowired EventUserService service) {
 		this.service = service;
 	}
-	
+	//イベント詳細取得
 	@GetMapping("/{eventId}")
 	public EventDetailForm eventDetail(@PathVariable(value = "eventId") @Validated int eventId) {
 		
@@ -50,5 +50,4 @@ public class EventUserController extends BaseEventController {
 		
 		return eventDetail;
 	}
-
 }

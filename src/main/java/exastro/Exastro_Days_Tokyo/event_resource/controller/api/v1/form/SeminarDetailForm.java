@@ -17,15 +17,24 @@ package exastro.Exastro_Days_Tokyo.event_resource.controller.api.v1.form;
 
 import java.util.Date;
 
-public class SeminarDetailForm extends SeminarListForm{
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
-//	登壇者ID
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+@Data
+@EqualsAndHashCode(callSuper=true)
+@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
+public class SeminarDetailForm extends SeminarListForm {
+	
+	// 登壇者ID
 	private int speakerId;
 	
-//	セミナー概要
+	// セミナー概要
 	private String seminarOverview;
-
-//	定員
+	
+	// 定員
 	private int capacity;
 	
 	public SeminarDetailForm(int seminarId, String seminarName, int blockId, String blockName, Date startDatetime ,
@@ -35,30 +44,5 @@ public class SeminarDetailForm extends SeminarListForm{
 		this.seminarOverview = seminarOverview;
 		this.capacity = capacity;
 	}
-
-	public int getSpeakerId() {
-		return speakerId;
-	}
-
-	public void setSpeakerId(int speakerId) {
-		this.speakerId = speakerId;
-	}
-
-	public String getSeminarOverview() {
-		return seminarOverview;
-	}
-
-	public void setSeminarOverview(String seminarOverview) {
-		this.seminarOverview = seminarOverview;
-	}
-
-	public int getCapacity() {
-		return capacity;
-	}
-
-	public void setCapacity(int capacity) {
-		this.capacity = capacity;
-	}
 	
 }
-

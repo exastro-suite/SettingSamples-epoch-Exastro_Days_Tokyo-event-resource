@@ -17,41 +17,29 @@ package exastro.Exastro_Days_Tokyo.event_resource.controller.api.v1.form;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
+
+import lombok.Data;
+
+@Data
+@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class EventForm {
-
+	
 	private int eventId;
+	
 	private String eventName;
+	
 	private Date eventDate;
-
+	
 	public EventForm() {
 		
 	}
-
+	
 	public EventForm(int eventId, String eventName, Date eventDate) {
 		this.eventId = eventId;
 		this.eventName = eventName;
 		this.eventDate = eventDate;
 	}
 	
-	public int getEventId() {
-		return eventId;
-	}
-	public void setEventId(int eventId) {
-		this.eventId = eventId;
-	}
-	
-	public String getEventName() {
-		return eventName;
-	}
-	public void setEventName(String eventName) {
-		this.eventName = eventName;
-	}
-	
-	public Date getEventDate() {
-		return eventDate;
-	}
-	public void setEventDate(Date eventDate) {
-		this.eventDate = eventDate;
-	}
 }
-

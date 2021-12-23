@@ -19,17 +19,28 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
+
+import lombok.Data;
+
+@Data
+@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class EventDetailForm {
-
+	
 	private int eventId;
+	
 	private String eventName;
+	
 	private String eventOverview;
+	
 	private Date eventDate;
+	
 	private String eventVenue;
-	private boolean deleteFlag;
+	
 	private List<Integer> speakerIDs;
-
-	public EventDetailForm(int eventId, String eventName, 
+	
+	public EventDetailForm(int eventId, String eventName,
 			String eventOverview, Date eventDate, String eventVenue, List<Integer> speakerIDs) {
 		this.eventId = eventId;
 		this.eventName = eventName;
@@ -39,49 +50,4 @@ public class EventDetailForm {
 		this.speakerIDs = new ArrayList<Integer>(speakerIDs);
 	}
 	
-	public int getEventId() {
-		return eventId;
-	}
-	public void setEventId(int eventId) {
-		this.eventId = eventId;
-	}
-	public String getEventName() {
-		return eventName;
-	}
-	public void setEventName(String eventName) {
-		this.eventName = eventName;
-	}
-	public String getEventOverview() {
-		return eventOverview;
-	}
-	public void setEventOverview(String eventOverview) {
-		this.eventOverview = eventOverview;
-	}
-	public Date getEventDate() {
-		return eventDate;
-	}
-	public void setEventDate(Date eventDate) {
-		this.eventDate = eventDate;
-	}
-	
-	public String getEventVenue() {
-		return eventVenue;
-	}
-	public void setEventVenue(String eventVenue) {
-		this.eventVenue = eventVenue;
-	}
-	public boolean isDeleteFlag() {
-		return deleteFlag;
-	}
-	public void setDeleteFlag(boolean deleteFlag) {
-		this.deleteFlag = deleteFlag;
-	}
-	public List<Integer> getSpeakerIDs() {
-		return speakerIDs;
-	}
-	public void setSpeakerIDs(List<Integer> speakerIDs) {
-		this.speakerIDs = speakerIDs;
-	}
-
 }
-

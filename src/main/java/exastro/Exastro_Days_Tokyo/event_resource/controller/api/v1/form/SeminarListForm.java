@@ -17,21 +17,28 @@ package exastro.Exastro_Days_Tokyo.event_resource.controller.api.v1.form;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
+
+import lombok.Data;
+
+@Data
+@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class SeminarListForm {
-
-//	セミナーID	
+	
+	// セミナーID
 	private int seminarId;
-
-//	セミナー名
+	
+	// セミナー名
 	private String seminarName;
 	
-//	ブロックID
+	// ブロックID
 	private int blockId;
-
-//	ブロック名	
+	
+	// ブロック名
 	private String blockName;
-
-//	開催日時(開始)
+	
+	// 開催日時(開始)
 	private Date startDatetime;
 	
 	public SeminarListForm(int seminarId, String seminarName, int blockId, String blockName, Date startDatetime ) {
@@ -41,46 +48,5 @@ public class SeminarListForm {
 		this.blockName = blockName;
 		this.startDatetime = startDatetime;
 	}
-
-	public int getSeminarId() {
-		return seminarId;
-	}
-
-	public void setSeminarId(int seminarId) {
-		this.seminarId = seminarId;
-	}
-
-	public String getSeminarName() {
-		return seminarName;
-	}
-
-	public void setSeminarName(String seminarName) {
-		this.seminarName = seminarName;
-	}
-
-	public int getBlockId() {
-		return blockId;
-	}
-
-	public void setBlockId(int blockId) {
-		this.blockId = blockId;
-	}
-
-	public String getBlockName() {
-		return blockName;
-	}
-
-	public void setBlockName(String blockName) {
-		this.blockName = blockName;
-	}
-
-	public Date getStartDatetime() {
-		return startDatetime;
-	}
-
-	public void setStartDatetime(Date startDatetime) {
-		this.startDatetime = startDatetime;
-	}
-	
 	
 }

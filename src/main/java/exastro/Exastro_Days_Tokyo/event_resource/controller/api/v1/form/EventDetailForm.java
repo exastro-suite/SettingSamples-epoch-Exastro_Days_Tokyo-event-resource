@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
@@ -33,7 +34,8 @@ public class EventDetailForm {
 	private String eventName;
 	
 	private String eventOverview;
-	
+
+	@JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
 	private Date eventDate;
 	
 	private String eventVenue;

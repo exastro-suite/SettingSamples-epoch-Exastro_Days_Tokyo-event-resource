@@ -17,6 +17,7 @@ package exastro.Exastro_Days_Tokyo.event_resource.controller.api.v1.form;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
@@ -39,6 +40,7 @@ public class SeminarListForm {
 	private String blockName;
 	
 	// 開催日時(開始)
+	@JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
 	private Date startDatetime;
 	
 	public SeminarListForm(int seminarId, String seminarName, int blockId, String blockName, Date startDatetime ) {

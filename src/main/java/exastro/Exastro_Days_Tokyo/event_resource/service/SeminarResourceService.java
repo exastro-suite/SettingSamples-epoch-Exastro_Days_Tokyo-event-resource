@@ -20,7 +20,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 @Service
-public interface SeminarUserService extends SeminarService {
+public interface SeminarResourceService extends SeminarService {
 
 	public List<Integer> getSpeakerIdList(int eventId);
 }

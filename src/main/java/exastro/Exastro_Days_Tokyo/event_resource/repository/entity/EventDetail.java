@@ -60,7 +60,31 @@ public class EventDetail {
 		this.eventDate = eventDate;
 		this.deleteFlag = false;
 	}
+
+	public EventDetail(String eventName, String eventOverView, String eventVenue) {
+		this.eventName = eventName;
+		this.eventOverview = eventOverview;		
+		this.eventDate = eventDate;
+		this.eventVenue = eventVenue;
+	}
 	
+	public EventDetail(String eventName, String eventOverView, Timestamp eventDate, String eventVenue, boolean deleteFlag) {
+		this.eventName = eventName;
+		this.eventOverview = eventOverview;		
+		this.eventDate = eventDate;
+		this.eventVenue = eventVenue;
+		this.deleteFlag = deleteFlag;
+	}
+
+	public EventDetail(int eventId, String eventName, String eventOverView, Timestamp eventDate, String eventVenue, boolean deleteFlag) {
+		this.eventId = eventId;
+		this.eventName = eventName;
+		this.eventOverview = eventOverview;		
+		this.eventDate = eventDate;
+		this.eventVenue = eventVenue;
+		this.deleteFlag = deleteFlag;
+	}
+
 	public int getEventId() {
 		return eventId;
 	}

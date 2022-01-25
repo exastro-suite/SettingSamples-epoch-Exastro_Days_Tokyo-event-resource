@@ -24,10 +24,10 @@ import exastro.Exastro_Days_Tokyo.event_resource.repository.entity.SeminarDetail
 import exastro.Exastro_Days_Tokyo.event_resource.service.dto.SeminarDetailDto;
 
 @Service
-public class SeminarUserServiceImpl extends BaseSeminarService implements SeminarUserService {
+public class SeminarResourceServiceImpl extends BaseSeminarService implements SeminarResourceService {
 
 
-	public SeminarUserServiceImpl() {
+	public SeminarResourceServiceImpl() {
 		
 	}
 

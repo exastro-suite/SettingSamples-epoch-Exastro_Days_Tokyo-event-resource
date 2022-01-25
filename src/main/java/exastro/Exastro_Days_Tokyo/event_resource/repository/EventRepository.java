@@ -26,12 +26,12 @@ import exastro.Exastro_Days_Tokyo.event_resource.repository.entity.EventDetail;
 @Repository
 public interface EventRepository extends JpaRepository<EventDetail, String> {
 
-	//イベント一覧を取得
+	//イベント一覧取得
 	ArrayList<Event> findByDeleteFlagFalse();
 	
 	//イベント詳細情報を取得
 	EventDetail findByEventIdIs(int eventId);
-
+	
 	//セミナー一覧から登壇者ID 取得
 //	ArrayList<Speaker> findBySpeakerIdIn(List<Integer> speakerList);
 }

@@ -23,14 +23,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import exastro.Exastro_Days_Tokyo.event_resource.controller.api.v1.form.SeminarDetailForm;
-import exastro.Exastro_Days_Tokyo.event_resource.service.SeminarUserService;
+import exastro.Exastro_Days_Tokyo.event_resource.service.SeminarResourceService;
 import exastro.Exastro_Days_Tokyo.event_resource.service.dto.SeminarDetailDto;
 
 @RestController
 @RequestMapping("/api/v1/seminar")
-public class SeminarUserController extends BaseSeminarController {
+public class SeminarResourceController extends BaseSeminarController {
 	
-	public SeminarUserController(@Autowired SeminarUserService service) {
+	public SeminarResourceController(@Autowired SeminarResourceService service) {
 		this.service = service;
 	}
 

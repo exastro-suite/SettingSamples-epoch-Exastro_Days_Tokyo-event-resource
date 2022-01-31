@@ -19,8 +19,15 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-@Service
-public interface SeminarResourceService extends SeminarService {
+import exastro.Exastro_Days_Tokyo.event_resource.service.dto.SeminarDetailDto;
+import exastro.Exastro_Days_Tokyo.event_resource.service.dto.SeminarListDto;
 
+@Service
+public interface SeminarResourceService {
+	
+	public List<SeminarListDto> getSeminar(int eventId);
+	
+	public SeminarDetailDto getSeminarDetail(int seminarId);
+	
 	public List<Integer> getSpeakerIdList(int eventId);
 }

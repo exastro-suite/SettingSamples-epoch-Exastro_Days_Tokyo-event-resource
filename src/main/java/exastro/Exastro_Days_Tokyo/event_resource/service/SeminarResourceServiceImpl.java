@@ -18,23 +18,45 @@ package exastro.Exastro_Days_Tokyo.event_resource.service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import exastro.Exastro_Days_Tokyo.event_resource.repository.SeminarRepository;
 import exastro.Exastro_Days_Tokyo.event_resource.repository.entity.SeminarDetail;
 import exastro.Exastro_Days_Tokyo.event_resource.service.dto.SeminarDetailDto;
+import exastro.Exastro_Days_Tokyo.event_resource.service.dto.SeminarListDto;
 
 @Service
-public class SeminarResourceServiceImpl extends BaseSeminarService implements SeminarResourceService {
-
-
+public class SeminarResourceServiceImpl implements SeminarResourceService {
+	
+	@Autowired
+	protected SeminarRepository repository;
+	
 	public SeminarResourceServiceImpl() {
 		
 	}
-
+	
+	public List<SeminarListDto> getSeminar(int eventId) {
+		
+		List<SeminarListDto> seminarList = null;
+		
+		try {
+			seminarList = repository.findByEventEventId(eventId)
+					.stream()
+					.map(e -> new SeminarListDto(e.getSeminarId(),e.getMstSeminar().getSeminarName(), e.getBlock().getBlockId(), e.getBlock().getBlockName(), e.getStartDatetime()))
+					.collect(Collectors.toList());
+		}
+		catch(Exception e) {
+			throw e;
+		}
+		
+		return seminarList;
+	}
+	
 	public SeminarDetailDto getSeminarDetail(int seminarId) {
 		
-		SeminarDetailDto seminarInfo =null;
-
+		SeminarDetailDto seminarInfo = null;
+		
 		try {
 			//セミナーID に紐づくセミナー情報を取得
 			SeminarDetail ev = repository.findBySeminarId(seminarId);
@@ -44,10 +66,10 @@ public class SeminarResourceServiceImpl extends BaseSeminarService implements Se
 		catch(Exception e) {
 			throw e;
 		}
-
+		
 		return seminarInfo;
 	}
-
+	
 	public List<Integer> getSpeakerIdList(int eventId) {
 		
 		List<Integer> speakerIdList = null;

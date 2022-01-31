@@ -16,15 +16,23 @@
 package exastro.Exastro_Days_Tokyo.event_resource.service;
 
 import java.sql.Timestamp;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import exastro.Exastro_Days_Tokyo.event_resource.repository.EventRepository;
 import exastro.Exastro_Days_Tokyo.event_resource.repository.entity.EventDetail;
+import exastro.Exastro_Days_Tokyo.event_resource.service.dto.EventDetailDto;
+import exastro.Exastro_Days_Tokyo.event_resource.service.dto.EventDto;
 
 @Service
-public class EventResourceServiceImpl extends BaseEventService implements EventResourceService {
-
+public class EventResourceServiceImpl implements EventResourceService {
+	
+	@Autowired
+	protected EventRepository repository;
+	
 	@Autowired
 	protected SeminarResourceService seminarSvc;
 	
@@ -32,56 +40,97 @@ public class EventResourceServiceImpl extends BaseEventService implements EventR
 		
 	}
 
-	public String updateEvent(EventDetail ev) {
+	public List<EventDto> getEvent() {
 		
-		EventDetail eventDetail = new EventDetail(ev.getEventId(), ev.getEventName(), 
-				ev.getEventOverview(), ev.getEventDate(), ev.getEventVenue(), ev.getDeleteFlag());
-
-	
-		String resultStr = null;
+		List<EventDto> eventList = null;
+		
 		try {
-			//イベントID に紐づくイベント情報 = repository.findByEventIdIs(eventDetail.getEventId());
-		    EventDetail eventDetailTarget = repository.findByEventIdIs(eventDetail.getEventId());
-		    eventDetailTarget.setEventId(eventDetail.getEventId());
-		    eventDetailTarget.setEventName(eventDetail.getEventName());
-		    eventDetailTarget.setEventOverview(eventDetail.getEventOverview());
-		    eventDetailTarget.setEventDate(new Timestamp(eventDetail.getEventDate().getTime()));
-		    eventDetailTarget.setEventVenue(eventDetail.getEventVenue());
-		    eventDetailTarget.setDeleteFlag(eventDetail.getDeleteFlag());
-		    EventDetail result = repository.save(eventDetailTarget);
-		    
-	       resultStr = "{\"result\":\"ok\"}";
+			eventList = repository.findByDeleteFlagFalse()
+					.stream()
+					.map(e -> new EventDto(e.getEventId(), e.getEventName(), e.getEventDate()))
+					.collect(Collectors.toList());
+		}
+		catch(Exception e) {
+			throw e;
+		}
+		
+		return eventList;
+	}
+
+	public EventDetailDto getEventDetail(int eventId) {
+
+		EventDetailDto eventInfo =null;
+
+		try {
+			//イベントID に紐づくイベント情報を取得
+			EventDetail ev = repository.findByEventIdIs(eventId);
+			eventInfo = new EventDetailDto(ev.getEventId(), ev.getEventName(), 
+					ev.getEventOverview(), ev.getEventDate(), ev.getEventVenue());
+
+
+			//該当イベントを含むセミナー一覧から登壇者IDを取得
+			List<Integer> speakerIdList = seminarSvc.getSpeakerIdList(eventId);
+
+			//登壇者情報をイベント情報内にセット
+			eventInfo.setSpeakerIDs(speakerIdList);
 		}
 		catch(Exception e) {
 			throw e;
 		}
 
-		return resultStr;
+		return eventInfo;
 	}
 	
 	public String registEvent(EventDetail ev) {
 		
-		EventDetail eventDetail = new EventDetail(ev.getEventName(), 
+		EventDetail eventDetail = new EventDetail(ev.getEventName(),
 				ev.getEventOverview(), ev.getEventDate(), ev.getEventVenue(), ev.getDeleteFlag());
 		
 		String resultStr = null;
 		try {
-		
-		    EventDetail eventDetailTarget = new EventDetail();
-		    eventDetailTarget.setEventName(eventDetail.getEventName());
-		    eventDetailTarget.setEventOverview(eventDetail.getEventOverview());
-		    eventDetailTarget.setEventDate(new Timestamp(eventDetail.getEventDate().getTime()));
-		    eventDetailTarget.setEventVenue(eventDetail.getEventVenue());
-		    eventDetailTarget.setDeleteFlag(eventDetail.getDeleteFlag());
-		    EventDetail result = repository.save(eventDetailTarget);
-		    
-	       resultStr = "{\"result\":\"ok\"}";
+			
+			EventDetail eventDetailTarget = new EventDetail();
+			eventDetailTarget.setEventName(eventDetail.getEventName());
+			eventDetailTarget.setEventOverview(eventDetail.getEventOverview());
+			eventDetailTarget.setEventDate(new Timestamp(eventDetail.getEventDate().getTime()));
+			eventDetailTarget.setEventVenue(eventDetail.getEventVenue());
+			eventDetailTarget.setDeleteFlag(eventDetail.getDeleteFlag());
+			EventDetail result = repository.save(eventDetailTarget);
+			
+			resultStr = "{\"result\":\"ok\"}";
 		}
 		catch(Exception e) {
 			throw e;
 		}
-
+		
 		return resultStr;
-	}	
+	}
+	
+	public String updateEvent(EventDetail ev) {
+		
+		EventDetail eventDetail = new EventDetail(ev.getEventId(), ev.getEventName(),
+				ev.getEventOverview(), ev.getEventDate(), ev.getEventVenue(), ev.getDeleteFlag());
+		
+		
+		String resultStr = null;
+		try {
+			//イベントID に紐づくイベント情報 = repository.findByEventIdIs(eventDetail.getEventId());
+			EventDetail eventDetailTarget = repository.findByEventIdIs(eventDetail.getEventId());
+			eventDetailTarget.setEventId(eventDetail.getEventId());
+			eventDetailTarget.setEventName(eventDetail.getEventName());
+			eventDetailTarget.setEventOverview(eventDetail.getEventOverview());
+			eventDetailTarget.setEventDate(new Timestamp(eventDetail.getEventDate().getTime()));
+			eventDetailTarget.setEventVenue(eventDetail.getEventVenue());
+			eventDetailTarget.setDeleteFlag(eventDetail.getDeleteFlag());
+			EventDetail result = repository.save(eventDetailTarget);
+			
+			resultStr = "{\"result\":\"ok\"}";
+		}
+		catch(Exception e) {
+			throw e;
+		}
+		
+		return resultStr;
+	}
 
 }

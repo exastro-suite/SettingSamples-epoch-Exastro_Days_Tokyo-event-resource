@@ -15,34 +15,89 @@
 
 package exastro.Exastro_Days_Tokyo.event_resource.controller.api.v1;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import exastro.Exastro_Days_Tokyo.event_resource.controller.api.v1.form.EventDetailForm;
+import exastro.Exastro_Days_Tokyo.event_resource.controller.api.v1.form.EventForm;
 import exastro.Exastro_Days_Tokyo.event_resource.repository.entity.EventDetail;
 import exastro.Exastro_Days_Tokyo.event_resource.service.EventResourceService;
-
+import exastro.Exastro_Days_Tokyo.event_resource.service.dto.EventDetailDto;
 
 @RestController
-//@RequestMapping("/api/v1/event")
-public class EventResourceController extends BaseEventController {
+@RequestMapping("/api/v1/event")
+public class EventResourceController {
 	
-	public EventResourceController(@Autowired EventResourceService service) {
-		this.service = service;
+	Logger logger = LoggerFactory.getLogger(this.getClass());
+	
+	@Autowired
+	protected EventResourceService service;
+	
+	public EventResourceController() {
+		
 	}
-	//イベント更新/削除
-	@RequestMapping(path = "/api/v1/event/{eventId}", method = RequestMethod.PUT)
-	public String eventUpdate(@PathVariable(value = "eventId") @Validated int eventId, @RequestBody EventDetail eventDetail) {
+	
+	//イベント一覧取得
+	@GetMapping("")
+	public List<EventForm> event() {
+		logger.debug("method called. [ " + Thread.currentThread().getStackTrace()[1].getMethodName() + " ]");
+		
+		List<EventForm> eventList = null;
+		
+		try {
+			eventList = service.getEvent()
+					.stream()
+					.map(e -> new EventForm(e.getEventId(), e.getEventName(), e.getEventDate()))
+					.collect(Collectors.toList());
+		}
+		catch(Exception e) {
+			logger.debug(e.getMessage(), e);
+			throw e;
+		}
+		
+		return eventList;
+	}
+	
+	//イベント詳細取得
+	@GetMapping("/{eventId}")
+	public EventDetailForm eventDetail(@PathVariable(value = "eventId") @Validated int eventId) {
+		
+		EventDetailForm eventDetail = null;
+		try {
+			EventDetailDto e = service.getEventDetail(eventId);
+			eventDetail = new EventDetailForm(e.getEventId(), e.getEventName(),
+					 e.getEventOverview(), e.getEventDate(), e.getEventVenue(), e.getSpeakerIDs());
+			
+		}
+		catch(Exception e) {
+			throw e;
+		}
+		
+		return eventDetail;
+	}
+	
+	//イベント登録
+	@PostMapping("")
+	@ResponseStatus(HttpStatus.CREATED) 
+	public String eventRegist(@RequestBody EventDetail eventDetail) {
 		
 		String resultStr = null;
 		try {
-			resultStr = service.updateEvent(eventDetail);
+			resultStr = service.registEvent(eventDetail);
 		
 		}
 		catch(Exception e) {
@@ -52,15 +107,14 @@ public class EventResourceController extends BaseEventController {
 		
 		return resultStr;
 	}
-
-	//イベント登録
-	@RequestMapping(path = "/api/v1/event", method = RequestMethod.POST)
-	@ResponseStatus(HttpStatus.CREATED) 
-	public String eventRegist(@RequestBody EventDetail eventDetail) {
+	
+	//イベント更新/削除
+	@PutMapping("/{eventId}")
+	public String eventUpdate(@PathVariable(value = "eventId") @Validated int eventId, @RequestBody EventDetail eventDetail) {
 		
 		String resultStr = null;
 		try {
-			resultStr = service.registEvent(eventDetail);
+			resultStr = service.updateEvent(eventDetail);
 		
 		}
 		catch(Exception e) {

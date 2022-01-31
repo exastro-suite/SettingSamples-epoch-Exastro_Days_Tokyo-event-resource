@@ -26,12 +26,15 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import lombok.Data;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 /**
  * The persistent class for the seminars database table.
  * 
  */
 @Entity
+@Data
 @Table(name="seminars")
 public class SeminarDetail {
 	
@@ -53,7 +56,7 @@ public class SeminarDetail {
 	@JoinColumn(name = "block_id")
 	private Block block;
 	
-	@Column(name="speaker_id")
+	@Column(name="speaker_id", nullable = true)
 	private Integer speakerId;
 	
 	@ManyToOne
@@ -72,59 +75,59 @@ public class SeminarDetail {
 		this.deleteFlag = false;
 	}
 	
-	public int getSeminarId() {
-		return seminarId;
-	}
-
-	public void setSeminarId(int seminarId) {
-		this.seminarId = seminarId;
-	}
-
-	public Timestamp getStartDatetime() {
-		return startDatetime;
-	}
-
-	public void setStartDatetime(Timestamp startDatetime) {
-		this.startDatetime = startDatetime;
-	}
-
-	public boolean getDeleteFlag() {
-		return deleteFlag;
-	}
-	public void setDeleteFlag(boolean deleteFlag) {
-		this.deleteFlag = deleteFlag;
-	}
-
-	public MstSeminar getMstSeminar() {
-		return mstSeminar;
-	}
-
-	public void setMstSeminar(MstSeminar mstSeminar) {
-		this.mstSeminar = mstSeminar;
-	}
-
-	public Block getBlock() {
-		return block;
-	}
-
-	public void setBlock(Block block) {
-		this.block = block;
-	}
-
-	public Integer getSpeakerId() {
-		return speakerId;
-	}
-
-	public void setSpeakerId(Integer speakerId) {
-		this.speakerId = speakerId;
-	}
-
-	public EventDetail getEvent() {
-		return event;
-	}
-
-	public void setEvent(EventDetail event) {
-		this.event = event;
-	}
+//	public int getSeminarId() {
+//		return seminarId;
+//	}
+//
+//	public void setSeminarId(int seminarId) {
+//		this.seminarId = seminarId;
+//	}
+//
+//	public Timestamp getStartDatetime() {
+//		return startDatetime;
+//	}
+//
+//	public void setStartDatetime(Timestamp startDatetime) {
+//		this.startDatetime = startDatetime;
+//	}
+//
+//	public boolean getDeleteFlag() {
+//		return deleteFlag;
+//	}
+//	public void setDeleteFlag(boolean deleteFlag) {
+//		this.deleteFlag = deleteFlag;
+//	}
+//
+//	public MstSeminar getMstSeminar() {
+//		return mstSeminar;
+//	}
+//
+//	public void setMstSeminar(MstSeminar mstSeminar) {
+//		this.mstSeminar = mstSeminar;
+//	}
+//
+//	public Block getBlock() {
+//		return block;
+//	}
+//
+//	public void setBlock(Block block) {
+//		this.block = block;
+//	}
+//
+//	public Integer getSpeakerId() {
+//		return speakerId;
+//	}
+//
+//	public void setSpeakerId(Integer speakerId) {
+//		this.speakerId = speakerId;
+//	}
+//
+//	public EventDetail getEvent() {
+//		return event;
+//	}
+//
+//	public void setEvent(EventDetail event) {
+//		this.event = event;
+//	}
 	
 }

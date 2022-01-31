@@ -1,32 +1,17 @@
 package exastro.Exastro_Days_Tokyo.event_resource.service.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class MstSeminarDto {
 	private int mstSeminarId;
 	private String seminarName;
 	
-	public MstSeminarDto() {
-		
-	}
-	
 	public MstSeminarDto(String seminarName) {
-		this.seminarName = seminarName;
-	}
-	public MstSeminarDto(int mstSeminarId, String seminarName) {
-		this.mstSeminarId = mstSeminarId;
-		this.seminarName = seminarName;
-	}
-	
-	public int getMstSeminarId() {
-		return mstSeminarId;
-	}
-	public void setMstSeminarId(int mstSeminarId) {
-		this.mstSeminarId = mstSeminarId;
-	}
-	
-	public String getSeminarName() {
-		return seminarName;
-	}
-	public void setSeminarName(String seminarName) {
 		this.seminarName = seminarName;
 	}
 }

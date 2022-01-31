@@ -19,15 +19,18 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class EventDetailDto extends EventDto{
 	private String eventOverview;
 	private String eventVenue;
 	private List<Integer> speakerIDs = new ArrayList<Integer>();
 	private boolean deleteFlag;
-
-	public EventDetailDto() {
-		
-	}
 	
 	public EventDetailDto(int eventId, String eventName, 
 			String eventOverview, Date eventDate, String eventVenue) {
@@ -35,30 +38,5 @@ public class EventDetailDto extends EventDto{
 		this.eventOverview = eventOverview;
 		this.eventVenue = eventVenue;
 	}
-	
-	public List<Integer> getSpeakerIDs() {
-		return speakerIDs;
-	}
-	public void setSpeakerIDs(List<Integer> speakerIDs) {
-		this.speakerIDs = speakerIDs;
-	}
-	public String getEventOverview() {
-		return eventOverview;
-	}
-	public void setEventOverview(String eventOverview) {
-		this.eventOverview = eventOverview;
-	}
-	public String getEventVenue() {
-		return eventVenue;
-	}
-	public void setEventVenue(String eventVenue) {
-		this.eventVenue = eventVenue;
-	}
-	public boolean isDeleteFlag() {
-		return deleteFlag;
-	}
-	public void setDeleteFlag(boolean deleteFlag) {
-		this.deleteFlag = deleteFlag;
-	}	
 }
 

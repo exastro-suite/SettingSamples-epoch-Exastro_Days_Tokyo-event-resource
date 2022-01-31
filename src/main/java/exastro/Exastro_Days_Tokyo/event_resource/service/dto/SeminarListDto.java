@@ -2,9 +2,13 @@ package exastro.Exastro_Days_Tokyo.event_resource.service.dto;
 
 import java.util.Date;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class SeminarListDto {
 
 //	セミナーID	
@@ -21,12 +25,4 @@ public class SeminarListDto {
 
 //	開催日時(開始)
 	private Date startDatetime;
-	
-	public SeminarListDto(int seminarId, String seminarName, int blockId, String blockName, Date startDatetime ) {
-		this.seminarId = seminarId;
-		this.seminarName = seminarName;
-		this.blockId = blockId;
-		this.blockName = blockName;
-		this.startDatetime = startDatetime;
-	}	
 }

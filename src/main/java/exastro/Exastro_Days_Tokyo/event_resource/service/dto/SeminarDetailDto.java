@@ -14,13 +14,10 @@ public class SeminarDetailDto extends SeminarListDto{
 	private String seminarOverview;
 
 //	定員
-	private int capacity;
-
-//	終了時刻は値としてもたない？
-
+	private Integer capacity;
 	
 	public SeminarDetailDto(int seminarId, String seminarName, int blockId, String blockName, Date startDatetime ,
-			Integer speakerId, String seminarOverview, int capacity){
+			Integer speakerId, String seminarOverview, Integer capacity){
 		super(seminarId, seminarName, blockId, blockName, startDatetime);
 		this.speakerId = speakerId;
 		this.seminarOverview = seminarOverview;

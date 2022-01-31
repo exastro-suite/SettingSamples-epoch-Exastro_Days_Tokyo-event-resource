@@ -21,9 +21,13 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class EventForm {
 	
@@ -32,16 +36,5 @@ public class EventForm {
 	private String eventName;
 	
 	@JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
-	private Date eventDate;
-	
-	public EventForm() {
-		
-	}
-	
-	public EventForm(int eventId, String eventName, Date eventDate) {
-		this.eventId = eventId;
-		this.eventName = eventName;
-		this.eventDate = eventDate;
-	}
-	
+	private Date eventDate;	
 }

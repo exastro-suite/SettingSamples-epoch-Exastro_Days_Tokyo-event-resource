@@ -17,8 +17,6 @@ package exastro.Exastro_Days_Tokyo.event_resource.controller.api.v1.form;
 
 import java.util.Date;
 
-import javax.persistence.criteria.CriteriaBuilder.In;
-
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
@@ -37,10 +35,10 @@ public class SeminarDetailForm extends SeminarListForm {
 	private String seminarOverview;
 	
 	// 定員
-	private int capacity;
+	private Integer capacity;
 	
 	public SeminarDetailForm(int seminarId, String seminarName, int blockId, String blockName, Date startDatetime ,
-			Integer speakerId, String seminarOverview, int capacity){
+			Integer speakerId, String seminarOverview, Integer capacity){
 		super(seminarId, seminarName, blockId, blockName, startDatetime);
 		this.speakerId = speakerId;
 		this.seminarOverview = seminarOverview;

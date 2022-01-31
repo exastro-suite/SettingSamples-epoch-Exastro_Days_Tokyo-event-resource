@@ -43,7 +43,7 @@ public class MstSeminar {
 	private String seminarOverview;
 	
 	// 定員
-	@Column(name="capacity")
+	@Column(name="capacity", nullable = true)
 	private Integer capacity;
 	
 	@Column(name="delete_flag")

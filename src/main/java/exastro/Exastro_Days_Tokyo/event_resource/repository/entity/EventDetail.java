@@ -61,14 +61,14 @@ public class EventDetail {
 		this.deleteFlag = false;
 	}
 
-	public EventDetail(String eventName, String eventOverView, String eventVenue) {
+	public EventDetail(String eventName, String eventOverview, String eventVenue, Timestamp eventDate) {
 		this.eventName = eventName;
 		this.eventOverview = eventOverview;		
 		this.eventDate = eventDate;
 		this.eventVenue = eventVenue;
 	}
 	
-	public EventDetail(String eventName, String eventOverView, Timestamp eventDate, String eventVenue, boolean deleteFlag) {
+	public EventDetail(String eventName, String eventOverview, Timestamp eventDate, String eventVenue, boolean deleteFlag) {
 		this.eventName = eventName;
 		this.eventOverview = eventOverview;		
 		this.eventDate = eventDate;
@@ -76,7 +76,7 @@ public class EventDetail {
 		this.deleteFlag = deleteFlag;
 	}
 
-	public EventDetail(int eventId, String eventName, String eventOverView, Timestamp eventDate, String eventVenue, boolean deleteFlag) {
+	public EventDetail(int eventId, String eventName, String eventOverview, Timestamp eventDate, String eventVenue, boolean deleteFlag) {
 		this.eventId = eventId;
 		this.eventName = eventName;
 		this.eventOverview = eventOverview;		

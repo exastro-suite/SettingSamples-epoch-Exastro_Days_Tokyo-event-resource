@@ -26,15 +26,20 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class EventDetailDto extends EventDto{
+public class EventDetailDto{
+	
+	private int eventId;
+	private String eventName;
+	private Date eventDate;
 	private String eventOverview;
 	private String eventVenue;
 	private List<Integer> speakerIDs = new ArrayList<Integer>();
 	private boolean deleteFlag;
 	
-	public EventDetailDto(int eventId, String eventName, 
-			String eventOverview, Date eventDate, String eventVenue) {
-		super(eventId, eventName, eventDate);
+	public EventDetailDto(int eventId, String eventName, String eventOverview, Date eventDate, String eventVenue) {
+		this.eventId = eventId;
+		this.eventName = eventName;
+		this.eventDate = eventDate;
 		this.eventOverview = eventOverview;
 		this.eventVenue = eventVenue;
 	}

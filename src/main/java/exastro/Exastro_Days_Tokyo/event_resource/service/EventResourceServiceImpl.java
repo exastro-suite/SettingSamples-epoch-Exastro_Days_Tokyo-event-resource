@@ -81,23 +81,16 @@ public class EventResourceServiceImpl implements EventResourceService {
 		return eventInfo;
 	}
 	
-	public String registEvent(EventDetail ev) {
+	public String registerEvent(EventDetailDto ev) {
 		
-		EventDetail eventDetail = new EventDetail(ev.getEventName(),
-				ev.getEventOverview(), ev.getEventDate(), ev.getEventVenue(), ev.getDeleteFlag());
-		
+		EventDetail eventDetail = null;
 		String resultStr = null;
 		try {
+			Timestamp eventDate = new Timestamp(ev.getEventDate().getTime());
+			eventDetail = new EventDetail(ev.getEventName(), ev.getEventOverview(), eventDate, ev.getEventVenue());
+			EventDetail result = repository.save(eventDetail);
 			
-			EventDetail eventDetailTarget = new EventDetail();
-			eventDetailTarget.setEventName(eventDetail.getEventName());
-			eventDetailTarget.setEventOverview(eventDetail.getEventOverview());
-			eventDetailTarget.setEventDate(new Timestamp(eventDetail.getEventDate().getTime()));
-			eventDetailTarget.setEventVenue(eventDetail.getEventVenue());
-			eventDetailTarget.setDeleteFlag(eventDetail.getDeleteFlag());
-			EventDetail result = repository.save(eventDetailTarget);
-			
-			resultStr = "{\"result\":\"ok\"}";
+			resultStr = "{\"result\":\"ok\", \"event_id\":" + result.getEventId() + "}";
 		}
 		catch(Exception e) {
 			throw e;

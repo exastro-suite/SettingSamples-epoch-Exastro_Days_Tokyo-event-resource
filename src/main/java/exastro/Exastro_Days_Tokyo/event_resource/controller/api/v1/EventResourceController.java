@@ -93,11 +93,14 @@ public class EventResourceController {
 	//イベント登録
 	@PostMapping("")
 	@ResponseStatus(HttpStatus.CREATED) 
-	public String eventRegist(@RequestBody EventDetail eventDetail) {
+	public String eventRegist(@RequestBody EventDetailForm ed) {
 		
+		EventDetailDto eventDetail = null;
 		String resultStr = null;
 		try {
-			resultStr = service.registEvent(eventDetail);
+			eventDetail = new EventDetailDto(ed.getEventName(), ed.getEventOverview(), ed.getEventDate(),
+					ed.getEventVenue());
+			resultStr = service.registerEvent(eventDetail);
 		
 		}
 		catch(Exception e) {

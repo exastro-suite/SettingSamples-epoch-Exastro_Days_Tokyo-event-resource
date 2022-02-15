@@ -61,7 +61,7 @@ public class EventDetail {
 		this.deleteFlag = false;
 	}
 
-	public EventDetail(String eventName, String eventOverview, String eventVenue, Timestamp eventDate) {
+	public EventDetail(String eventName, String eventOverview, Timestamp eventDate, String eventVenue) {
 		this.eventName = eventName;
 		this.eventOverview = eventOverview;		
 		this.eventDate = eventDate;

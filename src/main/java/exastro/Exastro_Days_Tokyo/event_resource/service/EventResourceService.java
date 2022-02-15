@@ -30,7 +30,7 @@ public interface EventResourceService {
 	
 	public EventDetailDto getEventDetail(int eventId);
 	
-	public String registEvent(EventDetail eventDetail);
+	public String registerEvent(EventDetailDto eventDetail);
 	
 	public String updateEvent(EventDetail eventDetail);
 

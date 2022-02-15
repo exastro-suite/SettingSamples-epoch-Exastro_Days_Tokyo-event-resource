@@ -36,6 +36,13 @@ public class EventDetailDto{
 	private List<Integer> speakerIDs = new ArrayList<Integer>();
 	private boolean deleteFlag;
 	
+	public EventDetailDto(String eventName, String eventOverview, Date eventDate, String eventVenue) {
+		this.eventName = eventName;
+		this.eventDate = eventDate;
+		this.eventOverview = eventOverview;
+		this.eventVenue = eventVenue;
+	}
+	
 	public EventDetailDto(int eventId, String eventName, String eventOverview, Date eventDate, String eventVenue) {
 		this.eventId = eventId;
 		this.eventName = eventName;
@@ -44,4 +51,3 @@ public class EventDetailDto{
 		this.eventVenue = eventVenue;
 	}
 }
-

@@ -50,4 +50,13 @@ public class EventDetailDto{
 		this.eventOverview = eventOverview;
 		this.eventVenue = eventVenue;
 	}
+	
+	public EventDetailDto(int eventId, String eventName, String eventOverview, Date eventDate, String eventVenue, boolean deleteFlag) {
+		this.eventId = eventId;
+		this.eventName = eventName;
+		this.eventDate = eventDate;
+		this.eventOverview = eventOverview;
+		this.eventVenue = eventVenue;
+		this.deleteFlag = deleteFlag;
+	}
 }

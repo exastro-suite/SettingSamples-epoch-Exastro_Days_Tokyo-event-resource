@@ -23,6 +23,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,10 +32,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 import exastro.Exastro_Days_Tokyo.event_resource.controller.api.v1.form.EventDetailForm;
 import exastro.Exastro_Days_Tokyo.event_resource.controller.api.v1.form.EventForm;
-import exastro.Exastro_Days_Tokyo.event_resource.repository.entity.EventDetail;
 import exastro.Exastro_Days_Tokyo.event_resource.service.EventResourceService;
 import exastro.Exastro_Days_Tokyo.event_resource.service.dto.EventDetailDto;
 
@@ -53,7 +54,7 @@ public class EventResourceController {
 	
 	//イベント一覧取得
 	@GetMapping("")
-	public List<EventForm> event() {
+	public List<EventForm> getEvent() {
 		logger.debug("method called. [ " + Thread.currentThread().getStackTrace()[1].getMethodName() + " ]");
 		
 		List<EventForm> eventList = null;
@@ -74,7 +75,8 @@ public class EventResourceController {
 	
 	//イベント詳細取得
 	@GetMapping("/{eventId}")
-	public EventDetailForm eventDetail(@PathVariable(value = "eventId") @Validated int eventId) {
+	public EventDetailForm getEventDetail(@PathVariable(value = "eventId") @Validated int eventId) {
+		logger.debug("method called. [ " + Thread.currentThread().getStackTrace()[1].getMethodName() + " ]");
 		
 		EventDetailForm eventDetail = null;
 		try {
@@ -92,8 +94,9 @@ public class EventResourceController {
 	
 	//イベント登録
 	@PostMapping("")
-	@ResponseStatus(HttpStatus.CREATED) 
-	public String eventRegist(@RequestBody EventDetailForm ed) {
+	@ResponseStatus(HttpStatus.CREATED)
+	public String registerEvent(@RequestBody EventDetailForm ed) {
+		logger.debug("method called. [ " + Thread.currentThread().getStackTrace()[1].getMethodName() + " ]");
 		
 		EventDetailDto eventDetail = null;
 		String resultStr = null;
@@ -111,12 +114,29 @@ public class EventResourceController {
 		return resultStr;
 	}
 	
-	//イベント更新/削除
+	//イベント更新
 	@PutMapping("/{eventId}")
-	public String eventUpdate(@PathVariable(value = "eventId") @Validated int eventId, @RequestBody EventDetail eventDetail) {
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public String updateEvent(@PathVariable(value = "eventId") @Validated int eventId, @RequestBody EventDetailForm ed) {
+		logger.debug("method called. [ " + Thread.currentThread().getStackTrace()[1].getMethodName() + " ]");
 		
+		EventDetailDto eventDetail = null;
 		String resultStr = null;
 		try {
+			// does data exist ?
+			EventDetailDto checkEd = service.getEventDetail(eventId);
+			if(checkEd == null) {
+				throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Not found data.");
+			}
+			
+			// validate data
+			if(eventId != ed.getEventId()) {
+				throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid data.");
+			}
+			
+			// update
+			eventDetail = new EventDetailDto(ed.getEventId(), ed.getEventName(), ed.getEventOverview(), ed.getEventDate(),
+					ed.getEventVenue());
 			resultStr = service.updateEvent(eventDetail);
 		
 		}
@@ -128,4 +148,32 @@ public class EventResourceController {
 		return resultStr;
 	}
 	
+	//イベント削除
+	@DeleteMapping("/{eventId}")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public String deleteEvent(@PathVariable(value = "eventId") @Validated int eventId) {
+		
+		String resultStr = null;
+		try {
+			// does data exist ?
+			EventDetailDto checkEd = service.getEventDetail(eventId);
+			if(checkEd == null) {
+				throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Not found data.");
+			}
+			
+			// does data exist ?
+			if(checkEd.isDeleteFlag()) {
+				return "{\"result\":\"already deleted.\"}";
+			}
+			
+			resultStr = service.deleteEvent(eventId);
+		
+		}
+		catch(Exception e) {
+			logger.debug(e.getMessage(), e);
+			throw e;
+		}
+		
+		return resultStr;
+	}
 }

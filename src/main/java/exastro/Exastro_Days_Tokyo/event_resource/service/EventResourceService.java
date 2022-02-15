@@ -19,7 +19,6 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import exastro.Exastro_Days_Tokyo.event_resource.repository.entity.EventDetail;
 import exastro.Exastro_Days_Tokyo.event_resource.service.dto.EventDetailDto;
 import exastro.Exastro_Days_Tokyo.event_resource.service.dto.EventDto;
 
@@ -32,6 +31,8 @@ public interface EventResourceService {
 	
 	public String registerEvent(EventDetailDto eventDetail);
 	
-	public String updateEvent(EventDetail eventDetail);
+	public String updateEvent(EventDetailDto eventDetail);
+	
+	public String deleteEvent(int eventId);
 
 }

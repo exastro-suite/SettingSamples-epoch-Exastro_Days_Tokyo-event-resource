@@ -19,6 +19,8 @@ import java.sql.Timestamp;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,6 +31,8 @@ import exastro.Exastro_Days_Tokyo.event_resource.service.dto.EventDto;
 
 @Service
 public class EventResourceServiceImpl implements EventResourceService {
+	
+	Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	@Autowired
 	protected EventRepository repository;
@@ -58,26 +62,31 @@ public class EventResourceServiceImpl implements EventResourceService {
 	}
 
 	public EventDetailDto getEventDetail(int eventId) {
-
-		EventDetailDto eventInfo =null;
-
+		logger.debug("method called. [ " + Thread.currentThread().getStackTrace()[1].getMethodName() + " ]");
+		
+		EventDetailDto eventInfo = null;
+		
 		try {
 			//イベントID に紐づくイベント情報を取得
 			EventDetail ev = repository.findByEventIdIs(eventId);
+			if(ev == null) {
+				logger.debug("entity not found.");
+				return null;
+			}
+			
 			eventInfo = new EventDetailDto(ev.getEventId(), ev.getEventName(), 
 					ev.getEventOverview(), ev.getEventDate(), ev.getEventVenue());
-
-
+			
 			//該当イベントを含むセミナー一覧から登壇者IDを取得
 			List<Integer> speakerIdList = seminarSvc.getSpeakerIdList(eventId);
-
+			
 			//登壇者情報をイベント情報内にセット
 			eventInfo.setSpeakerIDs(speakerIdList);
 		}
 		catch(Exception e) {
 			throw e;
 		}
-
+		
 		return eventInfo;
 	}
 	
@@ -99,22 +108,36 @@ public class EventResourceServiceImpl implements EventResourceService {
 		return resultStr;
 	}
 	
-	public String updateEvent(EventDetail ev) {
-		
-		EventDetail eventDetail = new EventDetail(ev.getEventId(), ev.getEventName(),
-				ev.getEventOverview(), ev.getEventDate(), ev.getEventVenue(), ev.getDeleteFlag());
-		
+	public String updateEvent(EventDetailDto ev) {
 		
 		String resultStr = null;
 		try {
 			//イベントID に紐づくイベント情報 = repository.findByEventIdIs(eventDetail.getEventId());
-			EventDetail eventDetailTarget = repository.findByEventIdIs(eventDetail.getEventId());
-			eventDetailTarget.setEventId(eventDetail.getEventId());
-			eventDetailTarget.setEventName(eventDetail.getEventName());
-			eventDetailTarget.setEventOverview(eventDetail.getEventOverview());
-			eventDetailTarget.setEventDate(new Timestamp(eventDetail.getEventDate().getTime()));
-			eventDetailTarget.setEventVenue(eventDetail.getEventVenue());
-			eventDetailTarget.setDeleteFlag(eventDetail.getDeleteFlag());
+			EventDetail eventDetailTarget = repository.findByEventIdIs(ev.getEventId());
+			eventDetailTarget.setEventId(ev.getEventId());
+			eventDetailTarget.setEventName(ev.getEventName());
+			eventDetailTarget.setEventOverview(ev.getEventOverview());
+			eventDetailTarget.setEventDate(new Timestamp(ev.getEventDate().getTime()));
+			eventDetailTarget.setEventVenue(ev.getEventVenue());
+//			eventDetailTarget.setDeleteFlag(ev.isDeleteFlag());
+			EventDetail result = repository.save(eventDetailTarget);
+			
+			resultStr = "{\"result\":\"ok\"}";
+		}
+		catch(Exception e) {
+			throw e;
+		}
+		
+		return resultStr;
+	}
+	
+	public String deleteEvent(int eventId) {
+		
+		String resultStr = null;
+		try {
+			EventDetail eventDetailTarget = repository.findByEventIdIs(eventId);
+			
+			eventDetailTarget.setDeleteFlag(true);
 			EventDetail result = repository.save(eventDetailTarget);
 			
 			resultStr = "{\"result\":\"ok\"}";

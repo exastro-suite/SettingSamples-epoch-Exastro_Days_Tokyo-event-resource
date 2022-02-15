@@ -30,7 +30,7 @@ public interface EventRepository extends JpaRepository<EventDetail, String> {
 	ArrayList<Event> findByDeleteFlagFalse();
 	
 	//イベント詳細情報を取得
-	EventDetail findByEventIdIs(int eventId);
+	EventDetail findByEventIdIsAndDeleteFlagFalse(int eventId);
 	
 	//セミナー一覧から登壇者ID 取得
 //	ArrayList<Speaker> findBySpeakerIdIn(List<Integer> speakerList);

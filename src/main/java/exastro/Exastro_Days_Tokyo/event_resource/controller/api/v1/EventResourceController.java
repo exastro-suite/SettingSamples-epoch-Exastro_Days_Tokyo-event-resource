@@ -80,9 +80,12 @@ public class EventResourceController {
 		
 		EventDetailForm eventDetail = null;
 		try {
-			EventDetailDto e = service.getEventDetail(eventId);
-			eventDetail = new EventDetailForm(e.getEventId(), e.getEventName(),
-					 e.getEventOverview(), e.getEventDate(), e.getEventVenue(), e.getSpeakerIDs());
+			EventDetailDto ev = service.getEventDetail(eventId);
+			if(ev == null) {
+				throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Not found data.");
+			}
+			eventDetail = new EventDetailForm(ev.getEventId(), ev.getEventName(),
+					 ev.getEventOverview(), ev.getEventDate(), ev.getEventVenue(), ev.getSpeakerIDs());
 			
 		}
 		catch(Exception e) {

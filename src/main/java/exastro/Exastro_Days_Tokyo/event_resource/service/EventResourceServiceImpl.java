@@ -68,7 +68,7 @@ public class EventResourceServiceImpl implements EventResourceService {
 		
 		try {
 			//イベントID に紐づくイベント情報を取得
-			EventDetail ev = repository.findByEventIdIs(eventId);
+			EventDetail ev = repository.findByEventIdIsAndDeleteFlagFalse(eventId);
 			if(ev == null) {
 				logger.debug("entity not found.");
 				return null;
@@ -113,7 +113,7 @@ public class EventResourceServiceImpl implements EventResourceService {
 		String resultStr = null;
 		try {
 			//イベントID に紐づくイベント情報 = repository.findByEventIdIs(eventDetail.getEventId());
-			EventDetail eventDetailTarget = repository.findByEventIdIs(ev.getEventId());
+			EventDetail eventDetailTarget = repository.findByEventIdIsAndDeleteFlagFalse(ev.getEventId());
 			eventDetailTarget.setEventId(ev.getEventId());
 			eventDetailTarget.setEventName(ev.getEventName());
 			eventDetailTarget.setEventOverview(ev.getEventOverview());
@@ -135,7 +135,7 @@ public class EventResourceServiceImpl implements EventResourceService {
 		
 		String resultStr = null;
 		try {
-			EventDetail eventDetailTarget = repository.findByEventIdIs(eventId);
+			EventDetail eventDetailTarget = repository.findByEventIdIsAndDeleteFlagFalse(eventId);
 			
 			eventDetailTarget.setDeleteFlag(true);
 			EventDetail result = repository.save(eventDetailTarget);

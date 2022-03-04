@@ -29,7 +29,7 @@ public interface Seminar {
 	
 	public Block getBlock();
 	
-//	public int getSpeakerId();
+	public int getSpeakerId();
 	
 //	public EventDetail getEvent();
 

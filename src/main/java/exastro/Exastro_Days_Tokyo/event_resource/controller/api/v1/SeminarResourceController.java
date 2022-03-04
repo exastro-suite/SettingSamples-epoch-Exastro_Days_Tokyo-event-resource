@@ -50,7 +50,7 @@ public class SeminarResourceController {
 		try {
 			seminarList = service.getSeminar(eventId)
 					.stream()
-					.map(s -> new SeminarListForm(s.getSeminarId(), s.getSeminarName(), s.getBlockId(), s.getBlockName(), s.getStartDatetime()))
+					.map(s -> new SeminarListForm(s.getSeminarId(), s.getSeminarName(), s.getBlockId(), s.getBlockName(), s.getStartDatetime(), s.getSpeakerId()))
 					.collect(Collectors.toList());
 		}
 		catch(Exception e) {
@@ -64,7 +64,7 @@ public class SeminarResourceController {
 	public SeminarDetailForm seminarDetail(@PathVariable(value = "seminarId") @Validated int seminarId) {
 		
 		SeminarDetailForm eventDetail = null;
-
+		
 		try {
 			SeminarDetailDto e = service.getSeminarDetail(seminarId);
 			eventDetail = new SeminarDetailForm(e.getSeminarId(), e.getSeminarName(), e.getBlockId(), e.getBlockName(),

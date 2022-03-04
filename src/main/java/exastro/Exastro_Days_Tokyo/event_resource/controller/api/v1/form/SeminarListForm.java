@@ -45,5 +45,8 @@ public class SeminarListForm {
 	
 	// 開催日時(開始)
 	@JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
-	private Date startDatetime;	
+	private Date startDatetime;
+	
+	// 登壇者ID
+	private Integer speakerId;
 }

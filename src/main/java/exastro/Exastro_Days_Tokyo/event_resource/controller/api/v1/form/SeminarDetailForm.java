@@ -28,9 +28,6 @@ import lombok.EqualsAndHashCode;
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class SeminarDetailForm extends SeminarListForm {
 	
-	// 登壇者ID
-	private Integer speakerId;
-	
 	// セミナー概要
 	private String seminarOverview;
 	
@@ -39,8 +36,7 @@ public class SeminarDetailForm extends SeminarListForm {
 	
 	public SeminarDetailForm(int seminarId, String seminarName, int blockId, String blockName, Date startDatetime ,
 			Integer speakerId, String seminarOverview, Integer capacity){
-		super(seminarId, seminarName, blockId, blockName, startDatetime);
-		this.speakerId = speakerId;
+		super(seminarId, seminarName, blockId, blockName, startDatetime, speakerId);
 		this.seminarOverview = seminarOverview;
 		this.capacity = capacity;
 	}

@@ -43,7 +43,8 @@ public class SeminarResourceServiceImpl implements SeminarResourceService {
 		try {
 			seminarList = repository.findByEventEventId(eventId)
 					.stream()
-					.map(e -> new SeminarListDto(e.getSeminarId(),e.getMstSeminar().getSeminarName(), e.getBlock().getBlockId(), e.getBlock().getBlockName(), e.getStartDatetime()))
+					.map(e -> new SeminarListDto(e.getSeminarId(),e.getMstSeminar().getSeminarName(), e.getBlock().getBlockId(),
+							e.getBlock().getBlockName(), e.getStartDatetime(), e.getSpeakerId()))
 					.collect(Collectors.toList());
 		}
 		catch(Exception e) {

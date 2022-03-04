@@ -25,4 +25,7 @@ public class SeminarListDto {
 
 //	開催日時(開始)
 	private Date startDatetime;
+	
+//	登壇者ID
+	private Integer speakerId;
 }
